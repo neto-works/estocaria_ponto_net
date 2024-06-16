@@ -68,144 +68,153 @@ Solução + P.EstocariaNet.
 ### Auth 
 
 - open to everyone
-  ```http
+ ```http
   POST /api/Auth/login
-  ```
-  ```http
+ ```
+ ```http
   POST /api/Auth/register
-  ```
-  ```http
+ ```
+ ```http
   POST /api/Auth/refresh-token
-  ```
+ ```
 - Authorize Policy _"QuemPuderAdinistrar"(Admin)_
-  ```http
+
+ ```http
   POST /api/Auth/revoke/{email}
-  ```
+ ```
    ```http
   POST api/Auth/CreateRole
-  ```
+ ```
    ```http
   POST /api/Auth/AddUserToRole
-  ```
+ ```
 
 ### Estoquista
 
 - Authorize Policy _"QuemPuderEstocar"(Estoquista)_
-  ```http
+
+ ```http
   PUT /api/Estoquista/{id}
-  ```
+ ```
 - Authorize Policy _"QuemPuderAdinistrar"(Admin)_
-  ```http
+
+ ```http
   GET /api/Estoquistas/{id}
-  ```
-  ```http
+ ```
+ ```http
   DELETE /api/Estoquistas/{id}
-  ```
-  ```http
+ ```
+ ```http
   GET /api/Estoquistas
-  ```
+ ```
 
 ### Admin
 
 - Authorize Policy _"QuemPuderAdinistrar"(Admin)_
-  ```http
+
+ ```http
   POST /api/Admin/{id}/Estoquista/{id}/Estoque/{id}
-  ```
-  ```http
+ ```
+ ```http
   DELETE /api/Admin/{id}/Estoquista/{id}/Estoque/{id}
-  ```
+ ```
 
 ### Estoques
 
 - Authorize Policy _"QuemPuderEstocar"(Estoquista) OR "QuemPuderAdinistrar"(Admin)_
+
  ```http
   GET /api/Estoques
-  ```
-  ```http
+ ```
+ ```http
   GET /api/Produtos/{id}
-  ```
+ ```
 - Authorize Policy _"QuemPuderEstocar"(Estoquista) OR "QuemPuderAdinistrar"(Admin)_
-  ```http
+
+ ```http
   PUT /api/Estoques
-  ```
-  ```http
+ ```
+ ```http
   DELETE /api/Produtos/{id}
-  ```
-  ```http
+ ```
+ ```http
   POST /api/Estoques
-  ```
+ ```
 
 ### Categorias
 
 - Authorize Policy _"QuemPuderAdinistrar"(Admin)_
-  ```http
+
+ ```http
   POST /api/Categorias
-  ```
+ ```
 
 ### Produtos
 
 - Authorize Policy _"QuemPuderEstocar"(Estoquista) OR "QuemPuderAdinistrar"(Admin)_
-  ```http
+
+ ```http
   POST /api/Produtos
-  ```
-  ```http
+ ```
+ ```http
   GET /api/Produtos
-  ```
-  ```http
+ ```
+ ```http
   GET /api/Produtos/{id}
-  ```
-  ```http
+ ```
+ ```http
   PUT /api/Produtos/{id}
-  ```
-  ```http
+ ```
+ ```http
   DELETE /api/Produtos/{id}
-  ```
-  ```http
+ ```
+ ```http
   POST /api/Produtos/{id}/Categorias/{id}
-  ```
+ ```
 
 ### Lancamentos
 
 - Authorize Policy _"QuemPuderEstocar"(Estoquista)_
-  ```http
+ ```http
   POST /api/Lancamentos 
-  ```
+ ```
 - Authorize Policy _"QuemPuderAdinistrar"(Admin)_
-  ```http
+ ```http
   GET /api/Lancamentos/Periodo
-  ```
+ ```
 
 ### Relatorios
 
 - Authorize Policy _"QuemPuderAdinistrar"(Admin)_
-  ```http
+
+ ```http
   POST /api/Relatorios 
-  ```
+ ```
 
 ## Prerequisites
 - .Net version 8
 - Docker and Docke-compose plugin
 - EntityFrameworkCore Design
-  ```
+ ```
     dotnet tool install --global dotnet-ef
-  ```
+ ```
 ## Running_Application
 
 - create the bank:
-  ```
+ ```
     cd EstocariaNet && docker compose up
-  ```
+ ```
 
 - download dependencies:
-  ```
+ ```
     dotnet restore
-  ```
+ ```
 
 - to execute:
-  ```
+ ```
     dotnet ef database update &&
     dotnet run
-  ```
+ ```
  - http://localhost:7048/swagger/index.html
 
 ## Test the application using postman

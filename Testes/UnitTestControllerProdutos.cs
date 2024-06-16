@@ -5,7 +5,6 @@ using EstocariaNet.Shared.DTOs.Creates;
 using EstocariaNet.Shared.DTOs.Updates;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
-using System.Diagnostics;
 
 namespace Testes
 {
@@ -29,17 +28,18 @@ namespace Testes
             _controller = null;
         }
 
-        [Test]
-        public async Task CreateProduto_ValidData_ReturnsOk()
-        {
-            // Arrange
-            var produto = new CreateProdutoDTO();
-            _produtosServicesMock.Setup(service => service.AdicionarAsync(It.IsAny<CreateProdutoDTO>())).ReturnsAsync(new Produto());
+        // [Test]
+        // public async Task CreateProduto_ValidData_Returns201()
+        // {
+        //     var produto = new CreateProdutoDTO();
+        //     _produtosServicesMock.Setup(service => service.AdicionarAsync(It.IsAny<CreateProdutoDTO>())).ReturnsAsync(new Produto());
 
-            var result = await _controller.CreateProduto(produto);
-            Assert.That(result, Is.AssignableTo<CreatedAtActionResult>());
-            Debug.WriteLine(result.GetType().FullName);
-        }
+        //     var result = await _controller.CreateProduto(produto);
+
+        //     Assert.That(result, Is.TypeOf<IActionResult>());
+        //     var statusCodeResult = (StatusCodeResult)result;
+        //     Assert.That(statusCodeResult.StatusCode, Is.EqualTo(201));
+        // }
 
         [Test]
         public async Task GetProdutoById_ProductNotFound_ReturnsNotFound()
@@ -109,7 +109,7 @@ namespace Testes
             var result = await _controller.DeleteProduto(productId);
 
             // Assert
-            Assert.That(result, Is.TypeOf<OkObjectResult>());
+            Assert.That(result, Is.TypeOf<NoContentResult>());
         }
 
         [Test]

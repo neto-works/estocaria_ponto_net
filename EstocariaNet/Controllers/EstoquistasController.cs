@@ -16,7 +16,7 @@ namespace EstocariaNet.Controllers
             _estoquistaServices = estoquistaServices;
         }
 
-        [Authorize("QuemPuderAdinistrar")]
+        [Authorize(Policy ="QuemPuderAdministrar")]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetEstoquistaById(string id)
         {
@@ -35,7 +35,7 @@ namespace EstocariaNet.Controllers
             }
         }
 
-        [Authorize("QuemPuderAdinistrar")]
+        [Authorize(Policy ="QuemPuderAdministrar")]
         [HttpGet]
         public async Task<IActionResult> GetAllEstoquistas()
         {
@@ -50,7 +50,7 @@ namespace EstocariaNet.Controllers
             }
         }
 
-        [Authorize("QuemPuderEstocar")]
+        [Authorize(Policy ="QuemPuderEstocar")]
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateEstoquista(string id, [FromBody] UpdateEstoquistaDTO estoquistaDTO)
         {
@@ -73,7 +73,7 @@ namespace EstocariaNet.Controllers
             }
         }
 
-        [Authorize("QuemPuderAdinistrar")]
+        [Authorize(Policy ="QuemPuderAdministrar")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteEstoquista(string id)
         {

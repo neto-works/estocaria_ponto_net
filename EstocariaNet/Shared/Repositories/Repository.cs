@@ -37,7 +37,7 @@ namespace EstocariaNet.Shared.Repositories
         async Task<T> IRepository<T>.DeleteAsync(int id)
         {
             var entity = await _context.Set<T>().FindAsync(id);
-            if (entity == null)
+            if (entity is null)
             {
                 throw new ArgumentException($"O recurso com o ID {id} não foi encontrado.");
             }

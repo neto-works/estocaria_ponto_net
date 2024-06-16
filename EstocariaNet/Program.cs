@@ -57,7 +57,7 @@ builder.Services.AddScoped<ITokenServices, TokenServices>();
 // add policies of users
 builder.Services.AddAuthorization(options =>
 {
-    options.AddPolicy("QuemPuderAdinistrar", policy => policy.RequireRole("Administrar"));
+    options.AddPolicy("QuemPuderAdministrar", policy => policy.RequireRole("Administrar"));
     options.AddPolicy("QuemPuderGerenciar", policy => policy.RequireRole("Gerenciar"));
     options.AddPolicy("QuemPuderEstocar", policy => policy.RequireRole("Estocar"));
 });

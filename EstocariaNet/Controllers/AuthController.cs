@@ -70,7 +70,7 @@ namespace EstocariaNet.Controllers
 
         }
 
-        [Authorize(Policy = "QuemPuderAdinistrar")]
+        [Authorize(Policy = "QuemPuderAdministrar")]
         [HttpPost]
         [Route("revoke/{email}")]
         public async Task<IActionResult> Revoke(string email)
@@ -79,7 +79,7 @@ namespace EstocariaNet.Controllers
             return revogado is true ? NoContent() : BadRequest("Invalid email of user.");
         }
 
-        [Authorize(Policy = "QuemPuderAdinistrar")]
+        [Authorize(Policy = "QuemPuderAdministrar")]
         [HttpPost]
         [Route("CreateRole")]
         public async Task<IActionResult> CreateRole(string roleName)
@@ -93,7 +93,7 @@ namespace EstocariaNet.Controllers
 
         }
 
-        [Authorize(Policy = "QuemPuderAdinistrar")]
+        [Authorize(Policy = "QuemPuderAdministrar")]
         [HttpPost]
         [Route("AddUserToRole")]
         public async Task<IActionResult> AddUserToRole(string email, string roleName)

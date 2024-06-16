@@ -21,13 +21,13 @@ namespace EstocariaNet.Services
             _repositoryProdutosPaginados = repositoryProdutosPaginados;
         }
 
-        async Task<Produto> IProdutosServices.AdicionarAsync(CreateProdutoDTO produto)
+        public async Task<Produto> AdicionarAsync(CreateProdutoDTO produto)
         {
             Produto p = this.ConvertCreateDtoToClass(produto);
             return await _repositoryProdutos.CreateAsync(p);
         }
 
-        async Task<Produto> IProdutosServices.AlterarAsync(int id, UpdateProdutoDTO produto)
+        public async Task<Produto> AlterarAsync(int id, UpdateProdutoDTO produto)
         {
             // Recuperar o produto existente com o ID fornecido
             Produto? produtoExistente = await _repositoryProdutos.GetByIdAsync(p => p.ProdutoId == id);
@@ -47,7 +47,7 @@ namespace EstocariaNet.Services
             return produtoExistente;
         }
 
-        async Task<Produto> IProdutosServices.BuscarAsync(int id)
+        public async Task<Produto> BuscarAsync(int id)
         {
             // Utilizar o método GetByIdAsync do repositório para buscar o produto pelo ID
             Produto? produto = await _repositoryProdutos.GetByIdAsync(p => p.ProdutoId == id);
@@ -61,12 +61,12 @@ namespace EstocariaNet.Services
             return produto;
         }
 
-        async Task<IEnumerable<Produto>> IProdutosServices.BuscarTodosAsync()
+        public async Task<IEnumerable<Produto>> BuscarTodosAsync()
         {
             return await _repositoryProdutos.GetAllAsync();
         }
 
-        async Task<Produto> IProdutosServices.ExcluirAsync(int id)
+        public async Task<Produto> ExcluirAsync(int id)
         {
             Produto? produtoParaExcluir = await _repositoryProdutos.GetByIdAsync(p => p.ProdutoId == id);
 
@@ -82,7 +82,7 @@ namespace EstocariaNet.Services
             return produtoParaExcluir;
         }
 
-        async Task<Produto> IProdutosServices.AssociarCategoriaAProdutoAsync(int produtoId, int categoriaId)
+        public async Task<Produto> AssociarCategoriaAProdutoAsync(int produtoId, int categoriaId)
         {
             // Recuperar o produto existente com o ID fornecido
             Produto? produtoExistente = await _repositoryProdutos.GetByIdAsync(p => p.ProdutoId == produtoId);

@@ -18,6 +18,8 @@ namespace EstocariaNet.Controller
             _produtosServices = produtosServices;
         }
 
+        [Authorize(Policy ="QuemPuderEstocar")]
+        [Authorize(Policy ="QuemPuderAdministrar")]
         [HttpPost]
         public async Task<IActionResult> CreateProduto([FromBody] CreateProdutoDTO produto)
         {
@@ -38,8 +40,8 @@ namespace EstocariaNet.Controller
             }
         }
 
-        [Authorize("QuemPuderEstocar")]
-        [Authorize("QuemPuderAdinistrar")]
+        [Authorize(Policy ="QuemPuderEstocar")]
+        [Authorize(Policy ="QuemPuderAdministrar")]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetProdutoById(int id)
         {
@@ -58,8 +60,9 @@ namespace EstocariaNet.Controller
             }
         }
 
-        [Authorize("QuemPuderEstocar")]
-        [Authorize("QuemPuderAdinistrar")]
+        
+        [Authorize(Policy ="QuemPuderAdministrar")]
+        [Authorize(Policy ="QuemPuderEstocar")]
         [HttpGet]
         public async Task<IActionResult> GetAllProdutos()
         {
@@ -74,7 +77,7 @@ namespace EstocariaNet.Controller
             }
         }
 
-        [Authorize("QuemPuderAdinistrar")]
+        [Authorize(Policy ="QuemPuderAdministrar")]
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateProduto(int id, [FromBody] UpdateProdutoDTO produtoDTO)
         {
@@ -97,7 +100,7 @@ namespace EstocariaNet.Controller
             }
         }
 
-        [Authorize("QuemPuderAdinistrar")]
+        [Authorize(Policy ="QuemPuderAdministrar")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteProduto(int id)
         {
@@ -116,9 +119,9 @@ namespace EstocariaNet.Controller
             }
         }
 
-        [Authorize("QuemPuderEstocar")]
-        [Authorize("QuemPuderAdinistrar")]
-        [HttpGet("pagination")]
+        [Authorize(Policy ="QuemPuderEstocar")]
+        [Authorize(Policy ="QuemPuderAdministrar")]
+        [HttpGet("Pagination")]
         public async Task<IActionResult> GetProdutos([FromQuery] ProdutosParameters resoucesParameters)
         { //from query faz a vinculaçãovaloresfornecisos a consulta
             try
@@ -132,8 +135,8 @@ namespace EstocariaNet.Controller
             }
         }
 
-        [Authorize("QuemPuderEstocar")]
-        [Authorize("QuemPuderAdinistrar")]
+        [Authorize(Policy ="QuemPuderEstocar")]
+        [Authorize(Policy ="QuemPuderAdministrar")]
         [HttpPost("{produto_id}/Categorias/{categoria_id}")]
         public async Task<IActionResult> AssociarCategoriaAProdutoAsync(int produtoId, int categoriaId)
         {

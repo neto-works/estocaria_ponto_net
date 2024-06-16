@@ -16,7 +16,7 @@ namespace EstocariaNet.Controllers
 
 
         [HttpPost]
-        [Authorize("QuemPuderAdinistrar")]
+        [Authorize(Policy ="QuemPuderAdinistrar")]
         public async Task<IActionResult> CreateCategoria(CreateCategoriaDTO categoria) {
             try
             {
