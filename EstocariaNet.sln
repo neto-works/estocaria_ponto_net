@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34728.123
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EstocariaNet", "EstocariaNet\EstocariaNet.csproj", "{6967665E-1870-4184-9887-C3BD1674C654}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Testes", "Testes\Testes.csproj", "{B6CFB8E6-B301-473B-A11A-D0B3B18D0358}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6967665E-1870-4184-9887-C3BD1674C654}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6967665E-1870-4184-9887-C3BD1674C654}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6967665E-1870-4184-9887-C3BD1674C654}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6967665E-1870-4184-9887-C3BD1674C654}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6CFB8E6-B301-473B-A11A-D0B3B18D0358}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6CFB8E6-B301-473B-A11A-D0B3B18D0358}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6CFB8E6-B301-473B-A11A-D0B3B18D0358}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6CFB8E6-B301-473B-A11A-D0B3B18D0358}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9F00AEC0-6498-41B7-946B-F1F94486F187}
+	EndGlobalSection
+EndGlobal

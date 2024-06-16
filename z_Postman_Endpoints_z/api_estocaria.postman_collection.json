@@ -1,0 +1,473 @@
+{
+	"info": {
+		"_postman_id": "2d547ab4-2862-4c1c-baac-8905b02363d3",
+		"name": "api_estocaria",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11477470",
+		"_collection_link": "https://dark-shuttle-812156.postman.co/workspace/Django-apps~09cbe5de-434e-47d6-9b89-230875577385/collection/11477470-2d547ab4-2862-4c1c-baac-8905b02363d3?action=share&source=collection_link&creator=11477470"
+	},
+	"item": [
+		{
+			"name": "Produtos",
+			"item": [
+				{
+					"name": "atribur_produto_categoria",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/Produtos/1/Categorias/1?produtoId=1&categoriaId=1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"Produtos",
+								"1",
+								"Categorias",
+								"1"
+							],
+							"query": [
+								{
+									"key": "produtoId",
+									"value": "1"
+								},
+								{
+									"key": "categoriaId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ver_produtos Copy",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ver_produtos_paginados",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/Produtos/Produtos/pagination?PageNumber=1&PageSize=10",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"Produtos",
+								"Produtos",
+								"pagination"
+							],
+							"query": [
+								{
+									"key": "PageNumber",
+									"value": "1"
+								},
+								{
+									"key": "PageSize",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "adicionar_produto",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nome\": \"Leite\",\r\n  \"descricao\": \"Leite de vaca em pó\",\r\n  \"preco\": 9.99,\r\n  \"imagemUrl\": \"caminho_algumaimagem.png\",\r\n  \"quantEstoqueMin\": 0,\r\n  \"quantEstoqueMax\": 200,\r\n  \"categoriaId\": null,\r\n  \"estoqueId\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/Produtos",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"Produtos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get_produtosByid",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/Produtos/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"Produtos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete_produtoByid",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/Produtos/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"Produtos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "atualizar_produto",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nome\": \"string\",\r\n  \"descricao\": \"string\",\r\n  \"preco\": 999999.99,\r\n  \"imagemUrl\": \"string\",\r\n  \"quantEstoqueMin\": 0,\r\n  \"quantEstoqueMax\": 0,\r\n  \"categoriaId\": 0,\r\n  \"estoqueId\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/Produtos/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"Produtos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Usuarios",
+			"item": [
+				{
+					"name": "logar_estoquista",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"neto_estoques@gmail.com\",\r\n  \"password\": \"NetoEstoques3000#\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/Auth/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"Auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logar_admin",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"robson_admin@gmail.com\",\r\n  \"password\": \"Robson_admin3000#\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/Auth/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"Auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Registrar_estoquista",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userName\": \"neto\",\r\n  \"email\": \"neto_estoques@gmail.com\",\r\n  \"password\": \"NetoEstoques3000#\",\r\n  \"tipoUsuario\": \"Estoquista\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/Auth/register",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"Auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Registrar_admin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userName\": \"robson\",\r\n  \"email\": \"robson_admin@gmail.com\",\r\n  \"password\": \"Robson_admin3000#\",\r\n  \"tipoUsuario\": \"Admin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/Auth/register",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"Auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "revogar_token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/Auth/revoke/{email}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"Auth",
+								"revoke",
+								"{email}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "criar_role",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/Auth/CreateRole?roleName=Turista\n",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"Auth",
+								"CreateRole"
+							],
+							"query": [
+								{
+									"key": "roleName",
+									"value": "Turista\n"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "adicionar_usuario_role",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/Auth/AddUserToRole?email=clodoaldo.brito45%40hotmail.com&roleName=Turista",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"Auth",
+								"AddUserToRole"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "clodoaldo.brito45%40hotmail.com"
+								},
+								{
+									"key": "roleName",
+									"value": "Turista"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Categorias",
+			"item": [
+				{
+					"name": "criar_categoria",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nome\": \"string\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/Categorias",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"Categorias"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Lançamentos",
+			"item": [
+				{
+					"name": "novo_lancamento",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6Im5ldG8iLCJlbWFpbCI6Im5ldG9fZXN0b3F1ZXNAZ21haWwuY29tIiwiVGlwb1VzdWFyaW8iOiJFU1RPUVVJU1RBIiwianRpIjoiNDZhMjQ5MzEtZjI4My00YzUwLWE4OTMtNzZkNzdlNjYwZTcxIiwicm9sZSI6IkVzdG9jYXIiLCJuYmYiOjE3MTgzMjMxNDUsImV4cCI6MTcxODMyNDk0NSwiaWF0IjoxNzE4MzIzMTQ1LCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjUwNjYiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjcwNjYifQ.zQX9xLBkuJkweZyx_ov7OxB-52GAGoIq1qSByCCtxcI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"quantEntrada\": 50,\r\n  \"quantSaida\": 30,\r\n  \"estoqueaId\": 1,\r\n  \"produtoId\": 1,\r\n  \"estoquistaId\": \"9e37302d-8893-4ceb-acd5-9a3da07fd6ca\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/Lancamentos",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"Lancamentos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "lancamento_com_admin",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6InJvYnNvbiIsImVtYWlsIjoicm9ic29uX2FkbWluQGdtYWlsLmNvbSIsIlRpcG9Vc3VhcmlvIjoiQURNSU4iLCJqdGkiOiIwNzJmNjRlOS1mNjZlLTQ3NDYtYTljOC00Njk2ZWM2OWQ3YTAiLCJyb2xlIjoiQWRtaW5pc3RyYXIiLCJuYmYiOjE3MTgzMjQyODUsImV4cCI6MTcxODMyNjA4NSwiaWF0IjoxNzE4MzI0Mjg1LCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjUwNjYiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjcwNjYifQ.nqmaHvBPq0gbTv3o8Flfs_pI5BzX3TZm7CKkFF9zNM4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"quantEntrada\": 50,\r\n  \"quantSaida\": 30,\r\n  \"estoqueaId\": 1,\r\n  \"produtoId\": 1,\r\n  \"estoquistaId\": \"9e37302d-8893-4ceb-acd5-9a3da07fd6ca\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/Lancamentos",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"Lancamentos"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
