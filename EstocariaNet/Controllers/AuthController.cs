@@ -1,5 +1,6 @@
 ﻿using EstocariaNet.Services.Interfaces;
 using EstocariaNet.Shared.DTOs;
+using EstocariaNet.Shared.Validate;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -52,7 +53,7 @@ namespace EstocariaNet.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, $"Erro interno do servidor: {ex.Message}");
+                return ServerErrorStandardized.Error500(this,ex);
             }
 
         }

@@ -123,7 +123,7 @@ namespace EstocariaNet.Controller
         [Authorize(Policy ="QuemPuderAdministrar")]
         [HttpGet("Pagination")]
         public async Task<IActionResult> GetProdutos([FromQuery] ProdutosParameters resoucesParameters)
-        { //from query faz a vinculaçãovaloresfornecisos a consulta
+        {
             try
             {
                 var produtos = await _produtosServices.BuscarPorParametrosAsync(resoucesParameters);
