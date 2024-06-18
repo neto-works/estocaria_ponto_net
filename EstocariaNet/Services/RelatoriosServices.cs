@@ -70,7 +70,7 @@ namespace EstocariaNet.Services
             relatorio.PredProdutoSaida = null;
             relatorio.PredProdutoEntrada = null;
             relatorio.PredTotalArrecadar = null;
-            relatorio.AdminId =relatorioDto.AdminId;
+            relatorio.AdminId = relatorioDto.AdminId;
 
             return await _repositoryRelatorios.CreateAsync(relatorio);
         }
