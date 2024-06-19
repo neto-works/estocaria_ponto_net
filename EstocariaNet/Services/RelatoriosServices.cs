@@ -1,12 +1,10 @@
-using System.Collections.ObjectModel;
-using System.Data;
 using System.Linq.Expressions;
 using EstocariaNet.Models;
 using EstocariaNet.Services.Interfaces;
 using EstocariaNet.Shared.DTOs;
 using EstocariaNet.Shared.DTOs.Creates;
+using EstocariaNet.Shared.MachineLearning;
 using EstocariaNet.Shared.Repositories.Interfaces;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Microsoft.IdentityModel.Tokens;
 
 namespace EstocariaNet.Services
@@ -67,7 +65,8 @@ namespace EstocariaNet.Services
             relatorio.PredicaoProxMeses = relatorioDto.PredicaoProxMeses;
             //  TODO ... dividar pra conquistar se PredicaoProxMeses for false evitar calcular, assumir false por enquanto
             relatorio.MesAnoPred = relatorioDto.MesAnoPred;
-            relatorio.PredProdutoSaida = null;
+            ObjectResultPredict op = Predicts.ExecutePredict(3,1,lancamentos);
+            relatorio.PredProdutoSaida = (int)op.Resultado;
             relatorio.PredProdutoEntrada = null;
             relatorio.PredTotalArrecadar = null;
             relatorio.AdminId = relatorioDto.AdminId;

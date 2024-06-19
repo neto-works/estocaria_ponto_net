@@ -23,7 +23,7 @@ namespace EstocariaNet.Services
 
         public async Task<Produto> AdicionarAsync(CreateProdutoDTO produto)
         {
-            Produto p = this.ConvertCreateDtoToClass(produto);
+            Produto p = ConvertCreateDtoToClass(produto);
             return await _repositoryProdutos.CreateAsync(p);
         }
 

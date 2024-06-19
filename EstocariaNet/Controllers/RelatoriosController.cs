@@ -17,8 +17,7 @@ namespace EstocariaNet.Controllers
         }
 
 
-        [Authorize(Policy = "QuemPuderAdinistrar")]
-        [Authorize(Policy = "QuemPuderEstocar")]
+        [Authorize(Policy ="QuemPuderFazerAmbasAsFuncoes")]
         [HttpPost]
         public async Task<IActionResult> CriarRelatorio( CreateRelatorioDTO dadosCriacao){
             try{

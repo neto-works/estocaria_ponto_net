@@ -60,6 +60,7 @@ builder.Services.AddAuthorization(options =>
     options.AddPolicy("QuemPuderAdministrar", policy => policy.RequireRole("Administrar"));
     options.AddPolicy("QuemPuderGerenciar", policy => policy.RequireRole("Gerenciar"));
     options.AddPolicy("QuemPuderEstocar", policy => policy.RequireRole("Estocar"));
+    options.AddPolicy("QuemPuderFazerAmbasAsFuncoes", policy => policy.RequireAssertion(context => context.User.IsInRole("Administrar") || context.User.IsInRole("Estocar")));
 });
 
 // add policy cors

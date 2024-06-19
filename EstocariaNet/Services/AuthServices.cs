@@ -15,7 +15,7 @@ namespace EstocariaNet.Services
         private readonly IConfiguration _configuration;
         private readonly UserManager<AplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
-
+        
         private readonly IEstoquistaServices _estoquistaService;
         private readonly IAdminServices _adminService;
         public AuthServices(ITokenServices tokenServices, UserManager<AplicationUser> userManager, RoleManager<IdentityRole> roleManager, IConfiguration configuration, IEstoquistaServices estoquistaService, IAdminServices adminService)
@@ -34,28 +34,28 @@ namespace EstocariaNet.Services
             if (user is not null && await _userManager.CheckPasswordAsync(user, model.Password!))
             {
                 var userRoles = await _userManager.GetRolesAsync(user);
-                var autClaims = new List<Claim> {
+                var authClaims = new List<Claim> {
                     new Claim(ClaimTypes.Name,user.UserName!),
                     new Claim(ClaimTypes.Email,user.Email!),
-                    new Claim("TipoUsuario", GetTipoUsuarioString(user.TipoUsuario)), //chaims não podem ser dinamicas, enum
+                    new Claim("TipoUsuario", GetTipoUsuarioString(user.TipoUsuario)),
                     new Claim(JwtRegisteredClaimNames.Jti,Guid.NewGuid().ToString()),
                 };
 
                 foreach (var userRole in userRoles)
                 {
-                    autClaims.Add(new Claim(ClaimTypes.Role, userRole));
+                    authClaims.Add(new Claim(ClaimTypes.Role, userRole));
                 }
 
-                var token = _tokenServices.GenerateAccessToken(autClaims, _configuration);
+                var token = _tokenServices.GenerateAccessToken(authClaims, _configuration);
                 var refreshToken = _tokenServices.GenerateRefreshToken();
-                _ = int.TryParse(_configuration["JWT:RefreshTokenValidityInMinutes"], out int refreshTokennValidityInMinutes);
+                _ = int.TryParse(_configuration["JWT:RefreshTokenValidityInMinutes"], out int refreshTokenValidityInMinutes);
                 user.RefreshToken = refreshToken;
-                user.RefreshTokenExpiryTime = DateTime.Now.AddMinutes(refreshTokennValidityInMinutes);
+                user.RefreshTokenExpiryTime = DateTime.Now.AddMinutes(refreshTokenValidityInMinutes);
                 await _userManager.UpdateAsync(user);
 
                 return new JwtObjectResultDTO { Token = new JwtSecurityTokenHandler().WriteToken(token), RefreshToken = refreshToken, Expiration = token.ValidTo };
             }
-            return null;
+            return new JwtObjectResultDTO();
         }
 
         public async Task<ResponseDTO> RegisterUser(RegistroDTO model)
@@ -68,13 +68,11 @@ namespace EstocariaNet.Services
             {
                 return new ResponseDTO { Status = "Error", Message = "User already Exists!" };
             };
-
-            AplicationUser user = new()
-            {
+            AplicationUser user = new (){
                 Email = model.Email,
                 SecurityStamp = Guid.NewGuid().ToString(),
                 UserName = model.UserName,
-                TipoUsuario = ParseEnum<TipoUsuarioEnum>(model.TipoUsuario!)
+                TipoUsuario = ParseEnum<TipoUsuarioEnum>(model.TipoUsuario!),
             };
             var result = await _userManager.CreateAsync(user, model.Password!);
 
@@ -84,16 +82,15 @@ namespace EstocariaNet.Services
             };
             switch (user.TipoUsuario)
             {
-
                 case TipoUsuarioEnum.ADMIN:
                     var adminSalvo = await _adminService.AdicionarAsync(new CreateAdminDTO { Setor = "Administrativo", AplicationUserId = user.Id });
                     role = await _roleManager.FindByNameAsync("Administrar");
 
                     if (role is null)
                     {
-                        roleCriada = await this.CreateRole("Administrar");
+                        roleCriada = await CreateRole("Administrar");
                     }
-                    _ = await this.AddRoleForUser(model.Email!, "Administrar");
+                    _ = await AddRoleForUser(model.Email!, "Administrar");
                     break;
 
                 case TipoUsuarioEnum.ESTOQUISTA:
@@ -102,9 +99,9 @@ namespace EstocariaNet.Services
 
                     if (role is null)
                     {
-                        roleCriada = await this.CreateRole("Estocar");
+                        roleCriada = await CreateRole("Estocar");
                     }
-                    _ = await this.AddRoleForUser(model.Email!, "Estocar");
+                    _ = await AddRoleForUser(model.Email!, "Estocar");
                     break;
 
                 case TipoUsuarioEnum.GERENTE:
@@ -201,6 +198,9 @@ namespace EstocariaNet.Services
             return new ResponseDTO { Status = "Error", Message = "Unable find user" };
         }
 
+        /// <summary>
+        /// Converte uma string com em tipo enum correspondente e devolve esse tipo enumerado.
+        /// </returns> TipoUsuarioEnum ou null
         public static T ParseEnum<T>(string value) where T : struct, Enum
         {
             if (Enum.TryParse(value, true, out T result) && Enum.IsDefined(typeof(T), result))
@@ -214,15 +214,8 @@ namespace EstocariaNet.Services
         }
 
         /// <summary>
-        /// Converts the value of the <see cref="TipoUsuarioEnum"/> enumeration into a string with the corresponding name.
-        /// If the value is <c>null</c>, or if the name cannot be determined (which is unlikely in well-defined enumerations),
-        /// returns an empty string.
-        /// </summary>
-        /// <param name="tipoUsuario">A nullable <see cref="TipoUsuarioEnum"/> value.</param>
-        /// <returns>
-        /// The name of the enumeration constant that corresponds to the value of <paramref name="tipoUsuario"/>.
-        /// If <paramref name="tipoUsuario"/> is <c>null</c> or the name cannot be determined, returns an empty string.
-        /// </returns>
+        /// Converte um enum em stringtipo enum correspondente e devolve essa string.
+        /// </returns> string ou null
         public static string GetTipoUsuarioString(TipoUsuarioEnum? tipoUsuario)
         {
             return tipoUsuario.HasValue ? Enum.GetName(typeof(TipoUsuarioEnum), tipoUsuario.Value) ?? "" : "";

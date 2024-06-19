@@ -24,11 +24,7 @@ namespace EstocariaNet.Controllers
         public async Task<IActionResult> Login([FromBody] LoginDTO model)
         {
             var responseToken = await _authServices.LogarUser(model);
-            if (responseToken != null)
-            {
-                return Ok(responseToken);
-            }
-            return Unauthorized();
+            return (responseToken.Token is not null)? Ok(responseToken) : Unauthorized();
         }
 
         [HttpPost]

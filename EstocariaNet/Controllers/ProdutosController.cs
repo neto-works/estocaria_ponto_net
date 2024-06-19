@@ -18,8 +18,7 @@ namespace EstocariaNet.Controller
             _produtosServices = produtosServices;
         }
 
-        [Authorize(Policy ="QuemPuderEstocar")]
-        [Authorize(Policy ="QuemPuderAdministrar")]
+        [Authorize(Policy ="QuemPuderFazerAmbasAsFuncoes")]
         [HttpPost]
         public async Task<IActionResult> CreateProduto([FromBody] CreateProdutoDTO produto)
         {
@@ -40,8 +39,7 @@ namespace EstocariaNet.Controller
             }
         }
 
-        [Authorize(Policy ="QuemPuderEstocar")]
-        [Authorize(Policy ="QuemPuderAdministrar")]
+        [Authorize(Policy ="QuemPuderFazerAmbasAsFuncoes")]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetProdutoById(int id)
         {
@@ -61,8 +59,7 @@ namespace EstocariaNet.Controller
         }
 
         
-        [Authorize(Policy ="QuemPuderAdministrar")]
-        [Authorize(Policy ="QuemPuderEstocar")]
+        [Authorize(Policy ="QuemPuderFazerAmbasAsFuncoes")]
         [HttpGet]
         public async Task<IActionResult> GetAllProdutos()
         {
@@ -119,8 +116,7 @@ namespace EstocariaNet.Controller
             }
         }
 
-        [Authorize(Policy ="QuemPuderEstocar")]
-        [Authorize(Policy ="QuemPuderAdministrar")]
+        [Authorize(Policy ="QuemPuderFazerAmbasAsFuncoes")]
         [HttpGet("Pagination")]
         public async Task<IActionResult> GetProdutos([FromQuery] ProdutosParameters resoucesParameters)
         {
@@ -135,8 +131,7 @@ namespace EstocariaNet.Controller
             }
         }
 
-        [Authorize(Policy ="QuemPuderEstocar")]
-        [Authorize(Policy ="QuemPuderAdministrar")]
+        [Authorize(Policy ="QuemPuderFazerAmbasAsFuncoes")]
         [HttpPost("{produto_id}/Categorias/{categoria_id}")]
         public async Task<IActionResult> AssociarCategoriaAProdutoAsync(int produtoId, int categoriaId)
         {
