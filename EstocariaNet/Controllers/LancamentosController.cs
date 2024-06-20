@@ -40,7 +40,7 @@ namespace EstocariaNet.Controllers
         }
         
         [Authorize(Policy = "QuemPuderAdministrar")]
-        [HttpGet("Periodo")]
+        [HttpPost("Periodo")]
         public async Task<IActionResult> GetLancamentosPeriodo([FromBody] DataComaparableDTO datas)
         {
             try{

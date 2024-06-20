@@ -52,19 +52,14 @@ namespace EstocariaNet.Services
             }
             Dictionary<int, float> ocorrencias = this.CalcularOcorrenciasSaidas(lancamentos);
             Relatorio relatorio = new Relatorio();
-            /*
-            TODO
-            - chamar todos  os metodos de matematica
-            - montar relatorio e colocar no objeto 
-            */
             relatorio.RelatorioName = relatorioDto.RelatorioName;
             relatorio.DataInicio = relatorioDto.DataInicio;
             relatorio.DataFim = relatorioDto.DataFim;
             relatorio.ProdutoMaisSaiu = CalcularProdutoMaisSaiu(ocorrencias);
             relatorio.TotalArrecadado = CalcularTotalArrecadado(lancamentos);
             relatorio.PredicaoProxMeses = relatorioDto.PredicaoProxMeses;
-            //  TODO ... dividar pra conquistar se PredicaoProxMeses for false evitar calcular, assumir false por enquanto
             relatorio.MesAnoPred = relatorioDto.MesAnoPred;
+            
             ObjectResultPredict op = Predicts.ExecutePredict(3,1,lancamentos);
             relatorio.PredProdutoSaida = (int)op.Resultado;
             relatorio.PredProdutoEntrada = null;
