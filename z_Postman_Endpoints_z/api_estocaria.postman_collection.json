@@ -1,10 +1,10 @@
 {
 	"info": {
-		"_postman_id": "2d547ab4-2862-4c1c-baac-8905b02363d3",
+		"_postman_id": "c5274605-2a92-4b51-85d9-ed68bb80597b",
 		"name": "api_estocaria",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
 		"_exporter_id": "11477470",
-		"_collection_link": "https://dark-shuttle-812156.postman.co/workspace/Django-apps~09cbe5de-434e-47d6-9b89-230875577385/collection/11477470-2d547ab4-2862-4c1c-baac-8905b02363d3?action=share&source=collection_link&creator=11477470"
+		"_collection_link": "https://dark-shuttle-812156.postman.co/workspace/Django-apps~09cbe5de-434e-47d6-9b89-230875577385/collection/11477470-c5274605-2a92-4b51-85d9-ed68bb80597b?action=share&source=collection_link&creator=11477470"
 	},
 	"item": [
 		{
@@ -45,9 +45,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": {
-							"raw": ""
-						}
+						"url": ""
 					},
 					"response": []
 				},
@@ -83,26 +81,24 @@
 				{
 					"name": "adicionar_produto",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6Im5ldG8iLCJlbWFpbCI6Im5ldG9fZXN0b3F1ZXNAZ21haWwuY29tIiwiVGlwb1VzdWFyaW8iOiJFU1RPUVVJU1RBIiwianRpIjoiMWI1NTRlNGItOTJhMy00MjJhLWJjNmEtYTk4MjFhNDEzYjc1Iiwicm9sZSI6IkVzdG9jYXIiLCJuYmYiOjE3MTg3NjYzNDcsImV4cCI6MTcxODc2ODE0NywiaWF0IjoxNzE4NzY2MzQ3LCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjUwNjYiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjcwNjYifQ.UpmOPjZEa7hrch0W8lJvyQzVwDpt9ox3NJ7CQlSWqII"
+							}
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"nome\": \"Leite\",\r\n  \"descricao\": \"Leite de vaca em pó\",\r\n  \"preco\": 9.99,\r\n  \"imagemUrl\": \"caminho_algumaimagem.png\",\r\n  \"quantEstoqueMin\": 0,\r\n  \"quantEstoqueMax\": 200,\r\n  \"categoriaId\": null,\r\n  \"estoqueId\": 1\r\n}",
+							"raw": "{\r\n  \"nome\": \"Leite Sarney\",\r\n  \"descricao\": \"Leite de vaca em pó\",\r\n  \"preco\": 9.99,\r\n  \"imagemUrl\": \"caminho_algumaimagem.png\",\r\n  \"quantEstoqueMin\": 0,\r\n  \"quantEstoqueMax\": 200,\r\n  \"categoriaId\": null,\r\n  \"estoqueId\": 1\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": {
-							"raw": "{{base_url}}/Produtos",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"Produtos"
-							]
-						}
+						"url": "{{base_url}}/Produtos"
 					},
 					"response": []
 				},
@@ -111,16 +107,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": {
-							"raw": "{{base_url}}/Produtos/1",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"Produtos",
-								"1"
-							]
-						}
+						"url": "{{base_url}}/Produtos/1"
 					},
 					"response": []
 				},
@@ -129,16 +116,7 @@
 					"request": {
 						"method": "DELETE",
 						"header": [],
-						"url": {
-							"raw": "{{base_url}}/Produtos/1",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"Produtos",
-								"1"
-							]
-						}
+						"url": "{{base_url}}/Produtos/1"
 					},
 					"response": []
 				},
@@ -156,16 +134,7 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "{{base_url}}/Produtos/1",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"Produtos",
-								"1"
-							]
-						}
+						"url": "{{base_url}}/Produtos/1"
 					},
 					"response": []
 				}
@@ -175,135 +144,11 @@
 			"name": "Usuarios",
 			"item": [
 				{
-					"name": "logar_estoquista",
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"email\": \"neto_estoques@gmail.com\",\r\n  \"password\": \"NetoEstoques3000#\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{base_url}}/Auth/login",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"Auth",
-								"login"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "logar_admin",
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"email\": \"robson_admin@gmail.com\",\r\n  \"password\": \"Robson_admin3000#\"\r\n}\r\n",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{base_url}}/Auth/login",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"Auth",
-								"login"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Registrar_estoquista",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"userName\": \"neto\",\r\n  \"email\": \"neto_estoques@gmail.com\",\r\n  \"password\": \"NetoEstoques3000#\",\r\n  \"tipoUsuario\": \"Estoquista\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{base_url}}/Auth/register",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"Auth",
-								"register"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Registrar_admin",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"userName\": \"robson\",\r\n  \"email\": \"robson_admin@gmail.com\",\r\n  \"password\": \"Robson_admin3000#\",\r\n  \"tipoUsuario\": \"Admin\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{base_url}}/Auth/register",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"Auth",
-								"register"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "revogar_token",
 					"request": {
 						"method": "POST",
 						"header": [],
-						"url": {
-							"raw": "{{base_url}}/Auth/revoke/{email}",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"Auth",
-								"revoke",
-								"{email}"
-							]
-						}
+						"url": "{{base_url}}/Auth/revoke/{email}"
 					},
 					"response": []
 				},
@@ -378,15 +223,7 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "{{base_url}}/Categorias",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"Categorias"
-							]
-						}
+						"url": "{{base_url}}/Categorias"
 					},
 					"response": []
 				}
@@ -400,13 +237,9 @@
 					"request": {
 						"auth": {
 							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6Im5ldG8iLCJlbWFpbCI6Im5ldG9fZXN0b3F1ZXNAZ21haWwuY29tIiwiVGlwb1VzdWFyaW8iOiJFU1RPUVVJU1RBIiwianRpIjoiNDZhMjQ5MzEtZjI4My00YzUwLWE4OTMtNzZkNzdlNjYwZTcxIiwicm9sZSI6IkVzdG9jYXIiLCJuYmYiOjE3MTgzMjMxNDUsImV4cCI6MTcxODMyNDk0NSwiaWF0IjoxNzE4MzIzMTQ1LCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjUwNjYiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjcwNjYifQ.zQX9xLBkuJkweZyx_ov7OxB-52GAGoIq1qSByCCtxcI",
-									"type": "string"
-								}
-							]
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6Im5ldG8iLCJlbWFpbCI6Im5ldG9fZXN0b3F1ZXNAZ21haWwuY29tIiwiVGlwb1VzdWFyaW8iOiJFU1RPUVVJU1RBIiwianRpIjoiNDZhMjQ5MzEtZjI4My00YzUwLWE4OTMtNzZkNzdlNjYwZTcxIiwicm9sZSI6IkVzdG9jYXIiLCJuYmYiOjE3MTgzMjMxNDUsImV4cCI6MTcxODMyNDk0NSwiaWF0IjoxNzE4MzIzMTQ1LCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjUwNjYiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjcwNjYifQ.zQX9xLBkuJkweZyx_ov7OxB-52GAGoIq1qSByCCtxcI"
+							}
 						},
 						"method": "POST",
 						"header": [],
@@ -419,15 +252,7 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "{{base_url}}/Lancamentos",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"Lancamentos"
-							]
-						}
+						"url": "{{base_url}}/Lancamentos"
 					},
 					"response": []
 				},
@@ -436,13 +261,9 @@
 					"request": {
 						"auth": {
 							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6InJvYnNvbiIsImVtYWlsIjoicm9ic29uX2FkbWluQGdtYWlsLmNvbSIsIlRpcG9Vc3VhcmlvIjoiQURNSU4iLCJqdGkiOiIwNzJmNjRlOS1mNjZlLTQ3NDYtYTljOC00Njk2ZWM2OWQ3YTAiLCJyb2xlIjoiQWRtaW5pc3RyYXIiLCJuYmYiOjE3MTgzMjQyODUsImV4cCI6MTcxODMyNjA4NSwiaWF0IjoxNzE4MzI0Mjg1LCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjUwNjYiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjcwNjYifQ.nqmaHvBPq0gbTv3o8Flfs_pI5BzX3TZm7CKkFF9zNM4",
-									"type": "string"
-								}
-							]
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6InJvYnNvbiIsImVtYWlsIjoicm9ic29uX2FkbWluQGdtYWlsLmNvbSIsIlRpcG9Vc3VhcmlvIjoiQURNSU4iLCJqdGkiOiIwNzJmNjRlOS1mNjZlLTQ3NDYtYTljOC00Njk2ZWM2OWQ3YTAiLCJyb2xlIjoiQWRtaW5pc3RyYXIiLCJuYmYiOjE3MTgzMjQyODUsImV4cCI6MTcxODMyNjA4NSwiaWF0IjoxNzE4MzI0Mjg1LCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjUwNjYiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjcwNjYifQ.nqmaHvBPq0gbTv3o8Flfs_pI5BzX3TZm7CKkFF9zNM4"
+							}
 						},
 						"method": "POST",
 						"header": [],
@@ -455,15 +276,221 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "{{base_url}}/Lancamentos",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"Lancamentos"
-							]
-						}
+						"url": "{{base_url}}/Lancamentos"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Relatorios",
+			"item": [
+				{
+					"name": "#1_CriarRelatorio(BearerTokenAdmin)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/Relatorios"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Admins",
+			"item": [
+				{
+					"name": "#1_RegistrarAdmin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userName\": \"admin\",\r\n  \"email\": \"admin@gmail.com\",\r\n  \"password\": \"Admin3000#\",\r\n  \"tipoUsuario\": \"Admin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/Auth/register"
+					},
+					"response": []
+				},
+				{
+					"name": "#2_LogarAdmin",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"admin@gmail.com\",\r\n  \"password\": \"Admin3000#\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/Auth/login"
+					},
+					"response": []
+				},
+				{
+					"name": "#3_GetAll(BearerTokenAdmin)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImFkbWluIiwiZW1haWwiOiJhZG1pbkBnbWFpbC5jb20iLCJUaXBvVXN1YXJpbyI6IkFETUlOIiwianRpIjoiZTZiODkzMWEtZjZjMy00Y2E3LTgwZjQtY2YxMGI3MTBhZDY1Iiwicm9sZSI6IkFkbWluaXN0cmFyIiwibmJmIjoxNzE4ODQ5MTAzLCJleHAiOjE3MTg4NTA5MDMsImlhdCI6MTcxODg0OTEwMywiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo1MDY2IiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo1MDE3In0.QrEH9hrIeTzeRLWXGULoMbyxgP35koK0C47wNmn2Lxc"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{base_url}}/Admins"
+					},
+					"response": []
+				},
+				{
+					"name": "#5_DeleteById(BearerTokenAdmin)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImFkbWluIiwiZW1haWwiOiJhZG1pbkBnbWFpbC5jb20iLCJUaXBvVXN1YXJpbyI6IkFETUlOIiwianRpIjoiZTZiODkzMWEtZjZjMy00Y2E3LTgwZjQtY2YxMGI3MTBhZDY1Iiwicm9sZSI6IkFkbWluaXN0cmFyIiwibmJmIjoxNzE4ODQ5MTAzLCJleHAiOjE3MTg4NTA5MDMsImlhdCI6MTcxODg0OTEwMywiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo1MDY2IiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo1MDE3In0.QrEH9hrIeTzeRLWXGULoMbyxgP35koK0C47wNmn2Lxc"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": "{{base_url}}/Admins/2a001b0e-5234-49c7-9e97-88692bc1bb53"
+					},
+					"response": []
+				},
+				{
+					"name": "#6_GetById(BearerTokenAdmin)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImFkbWluIiwiZW1haWwiOiJhZG1pbkBnbWFpbC5jb20iLCJUaXBvVXN1YXJpbyI6IkFETUlOIiwianRpIjoiZTZiODkzMWEtZjZjMy00Y2E3LTgwZjQtY2YxMGI3MTBhZDY1Iiwicm9sZSI6IkFkbWluaXN0cmFyIiwibmJmIjoxNzE4ODQ5MTAzLCJleHAiOjE3MTg4NTA5MDMsImlhdCI6MTcxODg0OTEwMywiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo1MDY2IiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo1MDE3In0.QrEH9hrIeTzeRLWXGULoMbyxgP35koK0C47wNmn2Lxc"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{base_url}}/Admins/2a001b0e-5234-49c7-9e97-88692bc1bb53"
+					},
+					"response": []
+				},
+				{
+					"name": "#7_UpdateByIdAndBody(BearerTokenAdmin)",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"setor\": \"string\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/Estoquistas/cd7eb1cb-3df3-4601-9a10-3db65287e2eb"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Estoques",
+			"item": []
+		},
+		{
+			"name": "Estoquista",
+			"item": [
+				{
+					"name": "#1_RegistrarEstoquista",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userName\": \"neto\",\r\n  \"email\": \"neto_estoques@gmail.com\",\r\n  \"password\": \"NetoEstoques3000#\",\r\n  \"tipoUsuario\": \"Estoquista\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/Auth/register"
+					},
+					"response": []
+				},
+				{
+					"name": "#2_LogarEstoquista",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"neto_estoques@gmail.com\",\r\n  \"password\": \"NetoEstoques3000#\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/Auth/login"
+					},
+					"response": []
+				},
+				{
+					"name": "#3_GetAll(BearerTokenAdmin)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{base_url}}/Estoquistas"
+					},
+					"response": []
+				},
+				{
+					"name": "#4_DeleteById(BearerTokenAdmin)",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "{{base_url}}/Estoquistas/be597967-ff08-4eb5-aa57-2df8139bf3c8"
+					},
+					"response": []
+				},
+				{
+					"name": "#6_GetById(BearerTokenAdmin)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{base_url}}/Estoquistas/cd7eb1cb-3df3-4601-9a10-3db65287e2eb"
+					},
+					"response": []
+				},
+				{
+					"name": "#7_UpdateByIdAndBody(BearerTokenEstoquista)",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": "{{base_url}}/Estoquistas/cd7eb1cb-3df3-4601-9a10-3db65287e2eb"
 					},
 					"response": []
 				}
