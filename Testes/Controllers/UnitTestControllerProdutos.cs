@@ -21,6 +21,8 @@ namespace Testes
             _produtosServicesMock = new Mock<IProdutosServices>();
             _controller = new ProdutosController(_produtosServicesMock.Object);
         }
+
+        [TearDown]
         public void TearDown() // usando gabage collector
         {
             this._produtosServicesMock = null;
@@ -28,7 +30,7 @@ namespace Testes
         }
 
         [Test]
-        public async Task CreateProduto_ValidDataReturns201()
+        public async Task CreateProdutoValidDataReturns201()
         {
             var produto = new CreateProdutoDTO();
             _produtosServicesMock!.Setup(service => service.AdicionarAsync(It.IsAny<CreateProdutoDTO>())).ReturnsAsync(new Produto());
@@ -43,7 +45,7 @@ namespace Testes
         }
 
         [Test]
-        public async Task GetProdutoById_ProductNotFoundReturnsNotFound()
+        public async Task GetProdutoByIdProductNotFoundReturnsNotFound()
         {
             var result = await _controller!.GetProdutoById(this._productId);
 
@@ -52,7 +54,7 @@ namespace Testes
         }
 
         [Test]
-        public async Task UpdateProduto_InvalidModelReturnsBadRequest()
+        public async Task UpdateProdutoInvalidModelReturnsBadRequest()
         {
             // Arrange
             _controller!.ModelState.AddModelError("NomeDoCampo", "Mensagem de erro");
@@ -65,7 +67,7 @@ namespace Testes
         }
 
         [Test]
-        public async Task UpdateProduto_ShouldValidModelReturnsOk()
+        public async Task UpdateProdutoShouldValidModelReturnsOk()
         {
             // Arrange
             var produtoDTO = new UpdateProdutoDTO { /* preencher com dados válidos */ };
@@ -79,7 +81,7 @@ namespace Testes
         }
 
         [Test]
-        public async Task UpdateProduto_ShouldReturningNotfoundWhentryingtoUpdateanObjectbyIdthatdoesnotExistintheDatabaseandThrowAnArgumentExceptionn()
+        public async Task UpdateProdutoShouldReturningNotfoundWhentryingtoUpdateanObjectbyIdthatdoesnotExistintheDatabaseandThrowAnArgumentExceptionn()
         {
             _produtosServicesMock!.Setup(service => service.AlterarAsync(this._productId, It.IsAny<UpdateProdutoDTO>())).Throws(new ArgumentException());
 
@@ -90,7 +92,7 @@ namespace Testes
         }
 
         [Test]
-        public async Task DeleteProduto_ShouldReturnANocontentWhenPassingAValidIdAndExcludingTheProduct()
+        public async Task DeleteProdutoShouldReturnANocontentWhenPassingAValidIdAndExcludingTheProduct()
         {
             _produtosServicesMock!.Setup(service => service.ExcluirAsync(this._productId)).ReturnsAsync(new Produto());
             var result = await _controller!.DeleteProduto(this._productId);
@@ -100,7 +102,7 @@ namespace Testes
         }
 
         [Test]
-        public async Task DeleteProduto_ShouldReturnNotfoundWhenReceivingIdThatDoesNotExistAndThrowAnArgumentException()
+        public async Task DeleteProdutoShouldReturnNotfoundWhenReceivingIdThatDoesNotExistAndThrowAnArgumentException()
         {
             _produtosServicesMock!.Setup(service => service.ExcluirAsync(this._productId)).Throws(new ArgumentException());
             var result = await _controller!.DeleteProduto(this._productId);
