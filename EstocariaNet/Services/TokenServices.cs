@@ -50,7 +50,6 @@ namespace EstocariaNet.Services
                 ValidateIssuerSigningKey = true,
                 IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey)),
                 ValidateLifetime = false,
-
             };
             var tokenHandler = new JwtSecurityTokenHandler();
             var principal = tokenHandler.ValidateToken(token, tokenValidationParameters, out SecurityToken securityToken);
@@ -58,7 +57,6 @@ namespace EstocariaNet.Services
             {
                 throw new SecurityTokenException("Invalid token");
             }
-
             return principal;
         }
     }

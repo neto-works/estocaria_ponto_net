@@ -3,15 +3,18 @@ using EstocariaNet.Services.Interfaces;
 using EstocariaNet.Shared.DTOs.Creates;
 using EstocariaNet.Shared.DTOs.Updates;
 using EstocariaNet.Shared.Repositories.Interfaces;
+using Microsoft.AspNetCore.Identity;
 
 namespace EstocariaNet.Services
 {
     public class AdminsServices : IAdminServices
     {
         private readonly IRepository<Admin> _repositoryAdmin;
-        public AdminsServices(IRepository<Admin> repositoryAdmin)
+        private readonly UserManager<AplicationUser> _userManager;
+        public AdminsServices(IRepository<Admin> repositoryAdmin,UserManager<AplicationUser> userManager)
         {
             _repositoryAdmin = repositoryAdmin;
+            _userManager = userManager;
         }
 
         public async Task<Admin> AdicionarAsync(CreateAdminDTO admin)
@@ -25,7 +28,7 @@ namespace EstocariaNet.Services
             Admin? adminExists = await _repositoryAdmin.GetByIdAsync(a => a.AdminId == id);
             if (adminExists is null)
             {
-                throw new ArgumentException($"Admin com o ID {id} não encontrado.");
+                throw new ArgumentException($"Admin with this ID does not exist in the system.");
             }
             // Atualizar as propriedades do produto existente com base nos dados fornecidos
             UpdateClassToDto(adminExists, admin);
@@ -37,13 +40,7 @@ namespace EstocariaNet.Services
         public async Task<Admin> BuscarAsync(string id)
         {
             Admin? admin = await _repositoryAdmin.GetByIdAsync(a => a.AdminId == id);
-
-            if (admin is null)
-            {
-                throw new ArgumentException($"Admin com o ID {id} não encontrado.");
-            }
-
-            return admin;
+            return (admin is null)? throw new ArgumentException($"Admin with this ID does not exist in the system.") : admin;
         }
 
         public async Task<IEnumerable<Admin>> BuscarTodosAsync()
@@ -51,17 +48,20 @@ namespace EstocariaNet.Services
              return await _repositoryAdmin.GetAllAsync();
         }
 
+        //poderia retornar nada logo mais quando é serviço é bom ter como pegar id do excluido, poderaser util pra exclusão mutua
         public async Task<Admin> ExcluirAsync(string id)
         {
-            Admin? adminExcluuir = await _repositoryAdmin.GetByIdAsync(a => a.AdminId == id);
+            Admin? adminExcluir = await _repositoryAdmin.GetByIdAsync(a => a.AdminId == id);
 
-            if (adminExcluuir is null)
+            if (adminExcluir is null)
             {
-                throw new ArgumentException($"Admin com o ID {id} não encontrado.");
+                throw new ArgumentException($"Admin with this ID does not exist in the system.");
             }
-            await _repositoryAdmin.DeleteAsync(id);
 
-            return adminExcluuir;
+            var userCorrespondente = await _userManager.FindByIdAsync(adminExcluir.AplicationUserAdminId!);
+            await _repositoryAdmin.DeleteAsync(id);
+            await _userManager.DeleteAsync(userCorrespondente!);
+            return adminExcluir;
         }
 
         private Admin ConvertDtoToClass(CreateAdminDTO adm)

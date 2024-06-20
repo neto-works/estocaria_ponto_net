@@ -3,17 +3,20 @@ using EstocariaNet.Services.Interfaces;
 using EstocariaNet.Shared.DTOs.Creates;
 using EstocariaNet.Shared.DTOs.Updates;
 using EstocariaNet.Shared.Repositories.Interfaces;
+using Microsoft.AspNetCore.Identity;
 
 namespace EstocariaNet.Services
 {
     public class EstoquistaServices : IEstoquistaServices
     {
         private readonly IRepository<Estoquista> _repositoryEstoquista;
+        private readonly UserManager<AplicationUser> _userManager;
         private readonly IEstoquesServices _serviceEstoque;
 
-        public EstoquistaServices(IRepository<Estoquista> repositoryEstoquista, IEstoquesServices serviceEstoque)
+        public EstoquistaServices(IRepository<Estoquista> repositoryEstoquista,UserManager<AplicationUser> userManager, IEstoquesServices serviceEstoque)
         {
             _repositoryEstoquista = repositoryEstoquista;
+             _userManager = userManager;
             _serviceEstoque = serviceEstoque;
         }
 
@@ -28,9 +31,8 @@ namespace EstocariaNet.Services
             Estoquista? estoquistaExists = await _repositoryEstoquista.GetByIdAsync(e => e.EstoquistaId == id);
             if (estoquistaExists is null)
             {
-                throw new ArgumentException($"Estoquista com o ID {id} não encontrado.");
+                throw new ArgumentException($"Estoquista with this ID does not exist in the system.");
             }
-            // Atualizar as propriedades do produto existente com base nos dados fornecidos
             UpdateClassToDto(estoquistaExists, estoquista);
             await _repositoryEstoquista.UpdateAsync(estoquistaExists);
 
@@ -44,7 +46,7 @@ namespace EstocariaNet.Services
             if (estoquista is null)
             {
                 // Lidar com o caso em que o produto não foi encontrado
-                throw new ArgumentException($"Estoquista com o ID {id} não encontrado.");
+                throw new ArgumentException($"Estoquista with this ID does not exist in the system.");
             }
 
             return estoquista;
@@ -61,10 +63,11 @@ namespace EstocariaNet.Services
 
             if (estoquistaExclud is null)
             {
-                throw new ArgumentException($"Estoquista com o ID {id} não encontrado.");
+                throw new ArgumentException($"Estoquista with this ID does not exist in the system.");
             }
+            var userCorrespondente = await _userManager.FindByIdAsync(estoquistaExclud.AplicationUserEstoquistaId!);
             await _repositoryEstoquista.DeleteAsync(id);
-
+            await _userManager.DeleteAsync(userCorrespondente!);
             return estoquistaExclud;
         }
 

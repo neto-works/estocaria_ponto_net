@@ -7,7 +7,7 @@ using EstocariaNet.Shared.Repositories.Interfaces;
 
 namespace EstocariaNet.Services
 {
-    public class ProdutosServices : IProdutosServices
+    public class ProdutosServices : ManagerDTOS<Produto,CreateProdutoDTO,UpdateProdutoDTO>, IProdutosServices
     {
         private readonly IRepository<Produto> _repositoryProdutos;
         private readonly IRepository<Categoria> _repositoryCategorias;
@@ -29,35 +29,23 @@ namespace EstocariaNet.Services
 
         public async Task<Produto> AlterarAsync(int id, UpdateProdutoDTO produto)
         {
-            // Recuperar o produto existente com o ID fornecido
             Produto? produtoExistente = await _repositoryProdutos.GetByIdAsync(p => p.ProdutoId == id);
 
             if (produtoExistente == null)
             {
-                // Lidar com o caso em que o produto não existe
                 throw new ArgumentException($"Produto com o ID {id} não encontrado.");
             }
-
-            // Atualizar as propriedades do produto existente com base nos dados fornecidos
             UpdateClassToDto(produtoExistente, produto);
-
-            // Salvar as alterações
-            await _repositoryProdutos.UpdateAsync(produtoExistente);
-
-            return produtoExistente;
+            return await _repositoryProdutos.UpdateAsync(produtoExistente);
         }
 
         public async Task<Produto> BuscarAsync(int id)
         {
-            // Utilizar o método GetByIdAsync do repositório para buscar o produto pelo ID
             Produto? produto = await _repositoryProdutos.GetByIdAsync(p => p.ProdutoId == id);
-
-            if (produto == null)
+            if (produto is null)
             {
-                // Lidar com o caso em que o produto não foi encontrado
                 throw new ArgumentException($"Produto com o ID {id} não encontrado.");
             }
-
             return produto;
         }
 
@@ -70,15 +58,11 @@ namespace EstocariaNet.Services
         {
             Produto? produtoParaExcluir = await _repositoryProdutos.GetByIdAsync(p => p.ProdutoId == id);
 
-            if (produtoParaExcluir == null)
+            if (produtoParaExcluir is null)
             {
-                // Lidar com o caso em que o produto não foi encontrado
                 throw new ArgumentException($"Produto com o ID {id} não encontrado.");
             }
-
-            // Excluir o produto utilizando o método DeleteAsync do repositório
             await _repositoryProdutos.DeleteAsync(id);
-
             return produtoParaExcluir;
         }
 
@@ -88,9 +72,8 @@ namespace EstocariaNet.Services
             Produto? produtoExistente = await _repositoryProdutos.GetByIdAsync(p => p.ProdutoId == produtoId);
             Categoria? categoriaExistente = await _repositoryCategorias.GetByIdAsync(p => p.CategoriaId == categoriaId);
 
-            if (produtoExistente == null || categoriaExistente == null)
+            if (produtoExistente is null || categoriaExistente is null)
             {
-                // Lidar com o caso em que o produto não existe
                 throw new ArgumentException($"Produto com o ID {produtoId} não encontrado ou essa Categoria não {categoriaId} existe.");
             }
 
@@ -98,17 +81,15 @@ namespace EstocariaNet.Services
             produtoExistente.CategoriaId = categoriaId;
 
             // Salvar as alterações
-            await _repositoryProdutos.UpdateAsync(produtoExistente);
-
+            _ = await _repositoryProdutos.UpdateAsync(produtoExistente);
             return produtoExistente;
-
         }
         public async Task<IEnumerable<Produto>> BuscarPorParametrosAsync(ProdutosParameters produtosParameters)
         {
             return await _repositoryProdutosPaginados.GetProdutosByPaginate(produtosParameters);
         }
 
-        private Produto ConvertCreateDtoToClass(CreateProdutoDTO produto)
+        protected override Produto ConvertCreateDtoToClass(CreateProdutoDTO produto)
         {
             return new Produto
             {
@@ -123,7 +104,7 @@ namespace EstocariaNet.Services
             };
         }
 
-        private void UpdateClassToDto(Produto antigo, UpdateProdutoDTO produto)
+        protected override void UpdateClassToDto(Produto antigo, UpdateProdutoDTO produto)
         {
             antigo.Nome = produto.Nome;
             antigo.Descricao = produto.Descricao;

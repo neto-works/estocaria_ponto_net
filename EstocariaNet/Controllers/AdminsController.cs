@@ -1,6 +1,7 @@
 ﻿using EstocariaNet.Services.Interfaces;
 using EstocariaNet.Shared.DTOs.Updates;
 using EstocariaNet.Shared.Validate;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EstocariaNet.Controllers
@@ -15,17 +16,17 @@ namespace EstocariaNet.Controllers
             _adminServices = adminServices;
         }
 
+        [Authorize(Policy = "QuemPuderAdministrar")]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetAdminById(string id)
         {
             try
             {
                 var admin = await _adminServices.BuscarAsync(id);
-                if (admin is null)
-                {
-                    return NotFound();
-                }
                 return Ok(admin);
+            }
+            catch (ArgumentException a){
+                return NotFound(a.Message);
             }
             catch (Exception ex)
             {
@@ -33,6 +34,7 @@ namespace EstocariaNet.Controllers
             }
         }
 
+        [Authorize(Policy = "QuemPuderAdministrar")]
         [HttpGet]
         public async Task<IActionResult> GetAllAdmins()
         {
@@ -47,6 +49,7 @@ namespace EstocariaNet.Controllers
             }
         }
 
+        [Authorize(Policy = "QuemPuderAdministrar")]
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateAdmin(string id, [FromBody] UpdateAdminDTO adminDTO)
         {
@@ -69,6 +72,7 @@ namespace EstocariaNet.Controllers
             }
         }
 
+        [Authorize(Policy = "QuemPuderAdministrar")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteAdmin(string id)
         {

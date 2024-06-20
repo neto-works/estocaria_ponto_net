@@ -23,11 +23,10 @@ namespace EstocariaNet.Controllers
             try
             {
                 var estoquista = await _estoquistaServices.BuscarAsync(id);
-                if (estoquista == null)
-                {
-                    return NotFound();
-                }
                 return Ok(estoquista);
+            }
+            catch (ArgumentException a){
+                return NotFound(a.Message);
             }
             catch (Exception ex)
             {

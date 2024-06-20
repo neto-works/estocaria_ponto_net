@@ -1,58 +1,95 @@
 ﻿using EstocariaNet.Models;
 using EstocariaNet.Services.Interfaces;
+using EstocariaNet.Shared.DTOs;
 using EstocariaNet.Shared.DTOs.Creates;
 using EstocariaNet.Shared.DTOs.Updates;
 using EstocariaNet.Shared.Repositories.Interfaces;
 
 namespace EstocariaNet.Services
 {
-    public class EstoquesServices : IEstoquesServices
+    public class EstoquesServices : ManagerDTOS<Estoque, CreateEstoqueDTO, UpdateEstoqueDTO>, IEstoquesServices
     {
         private readonly IRepository<Estoque> _repositoryEstoque;
-        public EstoquesServices(IRepository<Estoque> repositoryEstoque) {
+        public EstoquesServices(IRepository<Estoque> repositoryEstoque)
+        {
             _repositoryEstoque = repositoryEstoque;
         }
 
-        public Task<Estoque> AdicionarAsync(CreateEstoqueDTO estoque)
+        public async Task<Estoque> AdicionarAsync(CreateEstoqueDTO estoqueDto)
         {
-            throw new NotImplementedException();
+            Estoque estoque = ConvertCreateDtoToClass(estoqueDto);
+            return await _repositoryEstoque.CreateAsync(estoque);
         }
 
-        public Task<Estoque> AlterarAsync(int id, UpdateEstoqueDTO estoque)
+        public async Task<Estoque> AlterarAsync(int id, UpdateEstoqueDTO estoque)
         {
-            throw new NotImplementedException();
+            Estoque? estoqueExists = await _repositoryEstoque.GetByIdAsync(e => e.EstoqueId == id);
+            if (estoqueExists is null)
+            {
+                throw new ArgumentException($"Estoque com o ID {id} não encontrado.");
+            }
+            UpdateClassToDto(estoqueExists, estoque);
+            return await _repositoryEstoque.UpdateAsync(estoqueExists);
         }
 
-        public Task<Estoque> BuscarAsync(int id)
+        public async Task<Estoque> BuscarAsync(int id)
         {
-            throw new NotImplementedException();
+            Estoque? estoque = await _repositoryEstoque.GetByIdAsync(p => p.EstoqueId == id);
+            if (estoque is null)
+            {
+                throw new ArgumentException($"Estoque com o ID {id} não encontrado.");
+            }
+            return estoque;
         }
 
-        public Task<IEnumerable<Estoque>> BuscarTodosAsync()
+        public async  Task<IEnumerable<Estoque>> BuscarTodosAsync()
         {
-            throw new NotImplementedException();
+            return await _repositoryEstoque.GetAllAsync();
         }
 
-        public Task<Estoque> ExcluirAsync(int id)
+        public async Task<Estoque> ExcluirAsync(int id)
         {
-            throw new NotImplementedException();
+            Estoque? estoqueParaExcluir = await _repositoryEstoque.GetByIdAsync(p => p.EstoqueId == id);
+
+            if (estoqueParaExcluir is null)
+            {
+                throw new ArgumentException($"Estoque com o ID {id} não encontrado.");
+            }
+            await _repositoryEstoque.DeleteAsync(id);
+            return estoqueParaExcluir;
         }
 
-        public async Task<bool> InitEstoque() {
-
-            try {
+        public async Task<bool> InitEstoque()
+        {
+            try
+            {
                 var estoquePadrao = await _repositoryEstoque.GetAllAsync();
                 if (!estoquePadrao.Any())
                 {
                     var est = await _repositoryEstoque.CreateAsync(new Estoque { Nome = "Padrão", Local = "Matriz", Capacidade = 500 });
-                    if(est!=null) {
+                    if (est != null)
+                    {
                         return true;
                     }
-                } 
-            } catch (Exception e) {
+                }
+            }
+            catch (Exception e)
+            {
                 throw new Exception(e.Message);
             }
             return false;
+        }
+
+        protected override Estoque ConvertCreateDtoToClass(CreateEstoqueDTO estoqueDto)
+        {
+            return new Estoque { Nome = estoqueDto.Nome, Local = estoqueDto.Local, Capacidade = estoqueDto.Capacidade };
+        }
+
+        protected override void UpdateClassToDto(Estoque antigo, UpdateEstoqueDTO estoqueDto)
+        {
+            antigo.Nome = estoqueDto.Nome;
+            antigo.Local = estoqueDto.Local;
+            antigo.Capacidade = estoqueDto.Capacidade;
         }
     }
 }
