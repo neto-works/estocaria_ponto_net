@@ -1,7 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using EstocariaNet.Models;
-
-namespace EstocariaNet.Shared.DTOs.Creates
+﻿namespace EstocariaNet.Shared.DTOs.Creates
 {
     public class CreateRelatorioDTO
     {

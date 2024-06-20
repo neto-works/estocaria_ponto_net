@@ -1,5 +1,3 @@
-using EstocariaNet.Models;
-
 namespace EstocariaNet.Shared.DTOs.Updates
 {
     public class UpdateEstoqueDTO

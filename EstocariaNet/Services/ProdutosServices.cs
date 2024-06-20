@@ -7,7 +7,7 @@ using EstocariaNet.Shared.Repositories.Interfaces;
 
 namespace EstocariaNet.Services
 {
-    public class ProdutosServices : ManagerDTOS<Produto,CreateProdutoDTO,UpdateProdutoDTO>, IProdutosServices
+    public class ProdutosServices : ManagerDtos<Produto,CreateProdutoDTO,UpdateProdutoDTO>, IProdutosServices
     {
         private readonly IRepository<Produto> _repositoryProdutos;
         private readonly IRepository<Categoria> _repositoryCategorias;

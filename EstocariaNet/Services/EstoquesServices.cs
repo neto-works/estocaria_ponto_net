@@ -7,7 +7,7 @@ using EstocariaNet.Shared.Repositories.Interfaces;
 
 namespace EstocariaNet.Services
 {
-    public class EstoquesServices : ManagerDTOS<Estoque, CreateEstoqueDTO, UpdateEstoqueDTO>, IEstoquesServices
+    public class EstoquesServices : ManagerDtos<Estoque, CreateEstoqueDTO, UpdateEstoqueDTO>, IEstoquesServices
     {
         private readonly IRepository<Estoque> _repositoryEstoque;
         public EstoquesServices(IRepository<Estoque> repositoryEstoque)

@@ -11,6 +11,10 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using EstocariaNet.Models;
 using Microsoft.OpenApi.Models;
+using EstocariaNet.Shared.Swagger;
+using EstocariaNet.Shared.DTOs.Creates;
+using EstocariaNet.Shared.DTOs;
+using EstocariaNet.Shared.DTOs.Updates;
 
 var builder = WebApplication.CreateBuilder(args);
 var secretKey = builder.Configuration["JWT:SecretKey"] ?? throw new ArgumentException("Invalid secretkey");
@@ -19,9 +23,9 @@ var secretKey = builder.Configuration["JWT:SecretKey"] ?? throw new ArgumentExce
 builder.Services.AddControllers().AddJsonOptions(options => { options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles; });
 builder.Services.AddIdentity<AplicationUser, IdentityRole>().AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-builder.Services.AddScoped<IRepositoryProdutosPaginate,RepositoryProdutosPaginate>();
-builder.Services.AddScoped<IRepositoryRelatorios,RepositoryRelatorios>();
-builder.Services.AddScoped<IRepositoryLancamentos,RepositoryLancamentos>();
+builder.Services.AddScoped<IRepositoryProdutosPaginate, RepositoryProdutosPaginate>();
+builder.Services.AddScoped<IRepositoryRelatorios, RepositoryRelatorios>();
+builder.Services.AddScoped<IRepositoryLancamentos, RepositoryLancamentos>();
 
 builder.Services.AddScoped<IProdutosServices, ProdutosServices>();
 builder.Services.AddScoped<IEstoquistaServices, EstoquistaServices>();
@@ -102,6 +106,12 @@ builder.Services.AddSwaggerGen(c =>
                          new string[] {}
                     }
                 });
+    c.DocumentFilter<FilterSwagger>(new List<Type> {
+        typeof(CreateAdminDTO),typeof(LoginDTO),typeof(UpdateAdminDTO),typeof(TokenDTO),typeof(RegistroDTO),
+        typeof(DataComaparableDTO),typeof(CreateRelatorioDTO),typeof(CreateProdutoDTO),typeof(CreateCategoriaDTO),
+        typeof(UpdateEstoquistaDTO),typeof(CreateLancamentoDTO),typeof(TipoUsuarioEnum),typeof(UpdateEstoqueDTO),
+        typeof(UpdateProdutoDTO),typeof(UpdateProdutoDTO),
+        });
 });
 
 //register context

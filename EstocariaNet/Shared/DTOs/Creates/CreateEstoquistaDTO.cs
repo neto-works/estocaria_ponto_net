@@ -1,5 +1,4 @@
 using System.ComponentModel.DataAnnotations;
-using EstocariaNet.Models;
 
 namespace EstocariaNet.Shared.DTOs.Creates
 {
