@@ -120,8 +120,8 @@ namespace Testes.Services
                 EstoqueId = updateProdutoDto.EstoqueId
             };
 
-            _repositoryProdutos.Setup(repo => repo.GetByIdAsync(It.IsAny<Expression<Func<Produto, bool>>>())).ReturnsAsync(existingProduto);
-            _repositoryProdutos.Setup(repo => repo.UpdateAsync(It.IsAny<Produto>())).ReturnsAsync(updatedProduto);
+            _repositoryProdutos!.Setup(repo => repo.GetByIdAsync(It.IsAny<Expression<Func<Produto, bool>>>())).ReturnsAsync(existingProduto);
+            _repositoryProdutos!.Setup(repo => repo.UpdateAsync(It.IsAny<Produto>())).ReturnsAsync(updatedProduto);
 
             // Act
             var result = await _produtosServices!.AlterarAsync(produtoId, updateProdutoDto);
@@ -155,7 +155,7 @@ namespace Testes.Services
                 EstoqueId = 2
             };
 
-            _repositoryProdutos.Setup(repo => repo.GetByIdAsync(It.IsAny<Expression<Func<Produto, bool>>>())).ReturnsAsync((Produto?)null);
+            _repositoryProdutos!.Setup(repo => repo.GetByIdAsync(It.IsAny<Expression<Func<Produto, bool>>>())).ReturnsAsync((Produto?)null);
 
             // Act & Assert
             var ex = Assert.ThrowsAsync<ArgumentException>(async () => await _produtosServices!.AlterarAsync(produtoId, updateProdutoDto));

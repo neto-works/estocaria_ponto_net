@@ -1,4 +1,5 @@
 ﻿using EstocariaNet.Services.Interfaces;
+using EstocariaNet.Shared.DTOs.Creates;
 using EstocariaNet.Shared.DTOs.Updates;
 using EstocariaNet.Shared.Validate;
 using Microsoft.AspNetCore.Authorization;
@@ -14,6 +15,26 @@ namespace EstocariaNet.Controllers
         public EstoquesController(IEstoquesServices estoqueServices)
         {
             _estoqueServices = estoqueServices;
+        }
+
+        [Authorize(Policy ="QuemPuderAdministrar")]
+        [HttpPost]
+        public async Task<IActionResult> CreateEstoque([FromBody] CreateEstoqueDTO estoqueDto){
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage).ToList();
+                    return BadRequest(new { Errors = errors });
+                }
+
+                var novo = await _estoqueServices.AdicionarAsync(estoqueDto);
+                return StatusCode(201, novo);
+            }
+            catch (Exception ex)
+            {
+                return ServerErrorStandardized.Error500(this, ex);
+            }
         }
 
         [Authorize(Policy ="QuemPuderEstocar")]

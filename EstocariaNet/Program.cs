@@ -107,10 +107,10 @@ builder.Services.AddSwaggerGen(c =>
                     }
                 });
     c.DocumentFilter<FilterSwagger>(new List<Type> {
-        typeof(CreateAdminDTO),typeof(LoginDTO),typeof(UpdateAdminDTO),typeof(TokenDTO),typeof(RegistroDTO),
-        typeof(DataComaparableDTO),typeof(CreateRelatorioDTO),typeof(CreateProdutoDTO),typeof(CreateCategoriaDTO),
-        typeof(UpdateEstoquistaDTO),typeof(CreateLancamentoDTO),typeof(TipoUsuarioEnum),typeof(UpdateEstoqueDTO),
-        typeof(UpdateProdutoDTO),typeof(UpdateProdutoDTO),
+        // typeof(CreateAdminDTO),typeof(LoginDTO),typeof(UpdateAdminDTO),typeof(TokenDTO),typeof(RegistroDTO),
+        // typeof(DataComaparableDTO),typeof(CreateRelatorioDTO),typeof(CreateProdutoDTO),typeof(CreateCategoriaDTO),
+        // typeof(UpdateEstoquistaDTO),typeof(CreateLancamentoDTO),typeof(TipoUsuarioEnum),typeof(UpdateEstoqueDTO),
+        // typeof(UpdateProdutoDTO),typeof(UpdateProdutoDTO),
         });
 });
 

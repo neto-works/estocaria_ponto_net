@@ -27,7 +27,7 @@ namespace EstocariaNet.Controllers
                 }
 
                 var novaCategoria = await _categoriasServices.AdicionarAsync(categoria);
-                return Ok(novaCategoria);
+                return StatusCode(201,novaCategoria);
             }
             catch (Exception ex)
             {
