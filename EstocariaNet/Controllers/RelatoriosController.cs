@@ -33,8 +33,7 @@ namespace EstocariaNet.Controllers
                 return NotFound(ex.Message);
             }
             catch(Exception e){
-                return ServerErrorStandardized.Error500(this,e);
-;            }
+                return ServerErrorStandardized.Error500(this,e);           }
         }
 
     }

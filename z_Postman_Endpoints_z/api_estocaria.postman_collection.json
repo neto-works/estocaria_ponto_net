@@ -11,46 +11,16 @@
 			"name": "Produtos",
 			"item": [
 				{
-					"name": "atribur_produto_categoria",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"url": {
-							"raw": "{{base_url}}/Produtos/1/Categorias/1?produtoId=1&categoriaId=1",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"Produtos",
-								"1",
-								"Categorias",
-								"1"
-							],
-							"query": [
-								{
-									"key": "produtoId",
-									"value": "1"
-								},
-								{
-									"key": "categoriaId",
-									"value": "1"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "ver_produtos Copy",
+					"name": "#1_ver_produtos(BearerTokenAmbos)",
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": ""
+						"url": "{{base_url}}/Produtos"
 					},
 					"response": []
 				},
 				{
-					"name": "ver_produtos_paginados",
+					"name": "#2_ver_produtos_paginados(BearerTokenAmbos)",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -79,7 +49,7 @@
 					"response": []
 				},
 				{
-					"name": "adicionar_produto",
+					"name": "#3_adicionar_produto(BearerTokenAmbos)",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -103,7 +73,7 @@
 					"response": []
 				},
 				{
-					"name": "get_produtosByid",
+					"name": "#4_get_produtoByid(BearerTokenAmbos)",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -112,7 +82,7 @@
 					"response": []
 				},
 				{
-					"name": "delete_produtoByid",
+					"name": "#5_delete_produtoByid(BearerTokenAdmin)",
 					"request": {
 						"method": "DELETE",
 						"header": [],
@@ -121,7 +91,7 @@
 					"response": []
 				},
 				{
-					"name": "atualizar_produto",
+					"name": "#6_update_produtoByid(BearerTokenAdmin)",
 					"request": {
 						"method": "PUT",
 						"header": [],
@@ -137,6 +107,36 @@
 						"url": "{{base_url}}/Produtos/1"
 					},
 					"response": []
+				},
+				{
+					"name": "#7_atribur_produto_categoria(BearerTokenAmbos)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/Produtos/1/Categorias/1?produtoId=1&categoriaId=1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"Produtos",
+								"1",
+								"Categorias",
+								"1"
+							],
+							"query": [
+								{
+									"key": "produtoId",
+									"value": "1"
+								},
+								{
+									"key": "categoriaId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -144,16 +144,7 @@
 			"name": "Usuarios",
 			"item": [
 				{
-					"name": "revogar_token",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"url": "{{base_url}}/Auth/revoke/{email}"
-					},
-					"response": []
-				},
-				{
-					"name": "criar_role",
+					"name": "#1_criarRole(BearerTokenEstoquista)",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -177,12 +168,12 @@
 					"response": []
 				},
 				{
-					"name": "adicionar_usuario_role",
+					"name": "#2_adicionar_role_a_usuarioov(BearerTokenAdmin)",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/Auth/AddUserToRole?email=clodoaldo.brito45%40hotmail.com&roleName=Turista",
+							"raw": "{{base_url}}/Auth/AddUserToRole?email=marcos@gmail.com&roleName=Turista",
 							"host": [
 								"{{base_url}}"
 							],
@@ -193,7 +184,7 @@
 							"query": [
 								{
 									"key": "email",
-									"value": "clodoaldo.brito45%40hotmail.com"
+									"value": "marcos@gmail.com"
 								},
 								{
 									"key": "roleName",
@@ -203,6 +194,15 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "#3_revogar_token(BearerTokenAdmin)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": "{{base_url}}/Auth/revoke/mar@gmail.com"
+					},
+					"response": []
 				}
 			]
 		},
@@ -210,7 +210,7 @@
 			"name": "Categorias",
 			"item": [
 				{
-					"name": "criar_categoria",
+					"name": "#1_criarcategoria(BearerTokenAdmin)",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -233,7 +233,7 @@
 			"name": "Lançamentos",
 			"item": [
 				{
-					"name": "novo_lancamento",
+					"name": "#1_novo_lancamento(BearerTokenEstoquista)",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -257,7 +257,7 @@
 					"response": []
 				},
 				{
-					"name": "lancamento_com_admin",
+					"name": "#2_GetLancamentosPeriodo(BearerTokenEstoquista)",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -269,7 +269,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"quantEntrada\": 50,\r\n  \"quantSaida\": 30,\r\n  \"estoqueaId\": 1,\r\n  \"produtoId\": 1,\r\n  \"estoquistaId\": \"9e37302d-8893-4ceb-acd5-9a3da07fd6ca\"\r\n}",
+							"raw": "{\r\n  \"dataInicio\": \"2023-01-21T00:26:20.913Z\",\r\n  \"dataFim\": \"2024-06-21T00:26:20.913Z\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -292,7 +292,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "",
+							"raw": "{\n  \"relatorioName\": \"RelatorioUltimosdias\",\n  \"dataInicio\": \"2023-06-21T19:07:56.039Z\",\n  \"dataFim\": \"2024-06-21T19:07:56.039Z\",\n  \"predicaoProxMeses\": true,\n  \"mesAnoPred\": \"2024-07-21T19:07:56.039Z\",\n  \"adminId\": \"3868f658-c9f4-43dc-965c-e244ccf73167\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -414,7 +414,76 @@
 		},
 		{
 			"name": "Estoques",
-			"item": []
+			"item": [
+				{
+					"name": "1#_create_estoque(BearerTokenAdmin)",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nome\": \"Segundo Estoque\",\n  \"local\": \"Galpão da Ju\",\n  \"capacidade\": 1000\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2#_get_estoqueById(BearerTokenEstoquista)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{base_url}}/Estoques/2"
+					},
+					"response": []
+				},
+				{
+					"name": "3#_getall_estoques(BearerTokenAdmin)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{base_url}}/Estoques"
+					},
+					"response": []
+				},
+				{
+					"name": "4#_updateEstoque(BearerTokenAdmin)",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nome\": \"string\",\n  \"local\": \"string\",\n  \"capacidade\": 0\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/Estoques/2"
+					},
+					"response": []
+				},
+				{
+					"name": "5#_delete_estoques(BearerTokenAdmin)",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "{{base_url}}/Estoques/2"
+					},
+					"response": []
+				}
+			]
 		},
 		{
 			"name": "Estoquista",
@@ -495,6 +564,34 @@
 					"response": []
 				}
 			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": {
+			"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6Im5ldG8iLCJlbWFpbCI6Im5ldG9fZXN0b3F1ZXNAZ21haWwuY29tIiwiVGlwb1VzdWFyaW8iOiJFU1RPUVVJU1RBIiwianRpIjoiYTc5NGIzMTUtNzljNS00ZjU3LWJlNWItNjc0YjdmNDMwNTM1Iiwicm9sZSI6IkVzdG9jYXIiLCJuYmYiOjE3MTg5MzI2MjMsImV4cCI6MTcxODkzNDQyMywiaWF0IjoxNzE4OTMyNjIzLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjUwNjYiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjUwMTcifQ.OWw0FVrfEkfYR6XTMuwvZhGv6S-Qa83nxULhQY8CmjA"
+		}
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
 		}
 	]
 }
