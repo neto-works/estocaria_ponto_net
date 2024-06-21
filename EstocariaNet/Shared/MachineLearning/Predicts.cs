@@ -21,7 +21,7 @@ namespace EstocariaNet.Shared.MachineLearning
 
             List<InputModels> dados = new List<InputModels>();
             foreach (var lancamento in lancamentos){
-                dados.Add(new InputModels {ProdutoId = (int)lancamento.ProdutoId!, Mes = lancamento.Data!.Value.Month, Ano = lancamento.Data!.Value.Year,Entrada = lancamento.QuantEntrada, Saida = lancamento.QuantSaida});
+                dados.Add(new InputModels {ProdutoId = (int)lancamento.ProdutoId!, Mes = lancamento.Data!.Value.Month, Ano = lancamento.Data!.Value.Year, Entradas = lancamento.QuantEntrada, Saidas = lancamento.QuantSaida});
             }
             IDataView dadosDeTreinamento = context.Data.LoadFromEnumerable(dados);
                                                       
@@ -31,7 +31,7 @@ namespace EstocariaNet.Shared.MachineLearning
 
             var mecanismoDePrevisao = context.Model.CreatePredictionEngine<InputModels,ResultModels>(modelTrainee);
 
-            var mesSaidas = new InputModels { ProdutoId=produtoPred, Saida = mesPred};
+            var mesSaidas = new InputModels { ProdutoId=produtoPred, Saidas = mesPred};
 
             var resultado = mecanismoDePrevisao.Predict(mesSaidas);
 

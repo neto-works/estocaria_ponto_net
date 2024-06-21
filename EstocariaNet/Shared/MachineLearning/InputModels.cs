@@ -5,7 +5,7 @@
         public int ProdutoId { get; set; }
         public int Mes { get; set; }
         public int Ano { get; set; }
-         public float Entrada { get; set; }
-        public float Saida { get; set; }
+         public float Entradas { get; set; }
+        public float Saidas { get; set; }
     }
 }

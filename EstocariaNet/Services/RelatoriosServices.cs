@@ -13,11 +13,13 @@ namespace EstocariaNet.Services
     {
         private readonly IRepositoryRelatorios _repositoryRelatorios;
         private readonly ILancamentosServices _lancamentosServices;
+        private readonly IProdutosServices _produtosServices;
 
-        public RelatoriosServices(IRepositoryRelatorios repositoryRelatorios, ILancamentosServices lancamentosServices)
+        public RelatoriosServices(IRepositoryRelatorios repositoryRelatorios, ILancamentosServices lancamentosServices, IProdutosServices produtosServices)
         {
             _repositoryRelatorios = repositoryRelatorios;
             _lancamentosServices = lancamentosServices;
+            _produtosServices = produtosServices;
         }
 
         public Task<Relatorio> BuscarAsync(string id)
@@ -56,11 +58,11 @@ namespace EstocariaNet.Services
             relatorio.DataInicio = relatorioDto.DataInicio;
             relatorio.DataFim = relatorioDto.DataFim;
             relatorio.ProdutoMaisSaiu = CalcularProdutoMaisSaiu(ocorrencias);
-            relatorio.TotalArrecadado = CalcularTotalArrecadado(lancamentos);
+            relatorio.TotalArrecadado = await CalcularTotalArrecadado(lancamentos);
             relatorio.PredicaoProxMeses = relatorioDto.PredicaoProxMeses;
             relatorio.MesAnoPred = relatorioDto.MesAnoPred;
-            
-            ObjectResultPredict op = Predicts.ExecutePredict(3,1,lancamentos);
+
+            ObjectResultPredict op = Predicts.ExecutePredict(3, 1, lancamentos);
             relatorio.PredProdutoSaida = (int)op.Resultado;
             relatorio.PredProdutoEntrada = null;
             relatorio.PredTotalArrecadar = null;
@@ -90,25 +92,36 @@ namespace EstocariaNet.Services
 
             foreach (Lancamento l in lancamentos)
             {
-                if (!ocorrencias.ContainsKey(l.LinkProduto!.ProdutoId))
+                if (!ocorrencias.ContainsKey((int)l.ProdutoId!))
                 {
-                    ocorrencias.Add(l.LinkProduto.ProdutoId, l.QuantSaida);
+                    ocorrencias.Add((int)l.ProdutoId, l.QuantSaida);
                 }
                 else
                 {
-                    ocorrencias[l.LinkProduto.ProdutoId] = ocorrencias[l.LinkProduto.ProdutoId] += l.QuantSaida;
+                    ocorrencias[(int)l.ProdutoId] = ocorrencias[(int)l.ProdutoId] += l.QuantSaida;
                 }
             };
             return ocorrencias;
         }
 
-        private double CalcularTotalArrecadado(IEnumerable<Lancamento> lancamentos)
+        private async Task<double> CalcularTotalArrecadado(IEnumerable<Lancamento> lancamentos)
         {
+            IEnumerable<Produto> listaDeProdutos = await _produtosServices.BuscarTodosAsync();
             double total = 0;
-            foreach (Lancamento l in lancamentos)
+            if (listaDeProdutos.IsNullOrEmpty())
             {
-                total = total + ((double)l.QuantSaida * (double)l.LinkProduto?.Preco!);
+                foreach (Lancamento l in lancamentos)
+                {
+                    foreach (Produto p in listaDeProdutos)
+                    {
+                        if (l.ProdutoId == p.ProdutoId)
+                        {
+                            total = total + ((double)l.QuantSaida * (double)p.Preco!);
+                        }
+                    }
+                }
             }
+
             return total;
         }
     }
