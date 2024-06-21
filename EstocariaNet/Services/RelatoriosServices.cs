@@ -58,7 +58,7 @@ namespace EstocariaNet.Services
             relatorio.DataInicio = relatorioDto.DataInicio;
             relatorio.DataFim = relatorioDto.DataFim;
             relatorio.ProdutoMaisSaiu = CalcularProdutoMaisSaiu(ocorrencias);
-            relatorio.TotalArrecadado = await CalcularTotalArrecadado(lancamentos);
+            relatorio.TotalArrecadado = Math.Round(await CalcularTotalArrecadado(lancamentos),2);
             relatorio.PredicaoProxMeses = relatorioDto.PredicaoProxMeses;
             relatorio.MesAnoPred = relatorioDto.MesAnoPred;
 
@@ -108,7 +108,7 @@ namespace EstocariaNet.Services
         {
             IEnumerable<Produto> listaDeProdutos = await _produtosServices.BuscarTodosAsync();
             double total = 0;
-            if (listaDeProdutos.IsNullOrEmpty())
+            if (listaDeProdutos != null && listaDeProdutos.Any())
             {
                 foreach (Lancamento l in lancamentos)
                 {
