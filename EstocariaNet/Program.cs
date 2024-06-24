@@ -12,9 +12,6 @@ using System.Text;
 using EstocariaNet.Models;
 using Microsoft.OpenApi.Models;
 using EstocariaNet.Shared.Swagger;
-using EstocariaNet.Shared.DTOs.Creates;
-using EstocariaNet.Shared.DTOs;
-using EstocariaNet.Shared.DTOs.Updates;
 
 var builder = WebApplication.CreateBuilder(args);
 var secretKey = builder.Configuration["JWT:SecretKey"] ?? throw new ArgumentException("Invalid secretkey");

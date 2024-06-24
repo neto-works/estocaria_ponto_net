@@ -18,7 +18,7 @@ namespace Testes.Services
         private Mock<IRepositoryProdutosPaginate>? _repositoryProdutosPaginados;
 
         [SetUp]
-        public void Setup()
+        public void SetUp()
         {
             _repositoryProdutos = new Mock<IRepository<Produto>>();
             _repositoryCategorias = new Mock<IRepository<Categoria>>();

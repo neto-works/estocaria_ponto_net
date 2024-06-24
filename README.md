@@ -14,7 +14,8 @@
     <a href="#Technologies_Used">Technologies Used</a> •
     <a href="#Conceptual_Model">Conceptual model</a> •
     <a href="#Api_resources">Api resources</a> •
-    <a href="#Folder_Architecture">Folder Architecture</a> •
+    <a href="#Folder_Architecture">Folder Architecture BackEnd</a> •
+    <a href="#Folder_Architecture_Front">Folder Architecture FrontEnd</a> •
     <a href="#Running_Application">Running application</a> •
     <a href="#About_the_Author">About the Author</a> •
     <a href="https://github.com/neto-works/estocaria_ponto_net/blob/main/LICENSE">Licensing</a>
@@ -28,6 +29,10 @@
     - The ASP.NET Core microframework for building web applications.
     - The famous ORM on the .Net platform, the Entity Framework Core with some plugins and Mysql database.
     - And the docker containerization tool.
+
+## Designer_basis_for_application
+
+- [figma](https://www.figma.com/design/CbDUn4vSvPjqCr3EFRyMwz/Estocaria?node-id=0-1&t=Q5AB57GSGxufDBxJ-1)
 
 ## Folder_Architecture
 ```
@@ -191,6 +196,17 @@ Solução + P.EstocariaNet.
   POST /api/Relatorios 
  ```
 
+## Folder_Architecture_Front
+```
+estocaria_react.
+              ├── public
+              ├── src.
+              ├         └──────────  afazer
+              ├         └──────────  afazer /  allDTO.cs
+              ├         └──────────  afazer / allRepository,cs
+              └── pckage.json
+```
+
 ## Prerequisites
 - .Net version 8
 - Docker and Docke-compose plugin
@@ -215,7 +231,7 @@ Solução + P.EstocariaNet.
     dotnet ef database update &&
     dotnet run
  ```
- - http://localhost:7048/swagger/index.html
+ - http://localhost:5017/swagger/index.html
 
 ## Test the application using postman
 

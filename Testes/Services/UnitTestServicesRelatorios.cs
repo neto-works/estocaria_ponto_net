@@ -11,6 +11,8 @@ namespace Testes.Services
     public class UnitTestServicesRelatorios
     {
         private Mock<ILancamentosServices>? _lancamentosServices;
+        private Mock<IProdutosServices>? _produtosServices;
+
         private Mock<IRepositoryRelatorios>? _repositoryRelatorios;
         private RelatoriosServices? _relatoriosServices;
 
@@ -19,8 +21,9 @@ namespace Testes.Services
         {
             _repositoryRelatorios = new Mock<IRepositoryRelatorios>();
             _lancamentosServices = new Mock<ILancamentosServices>();
+            _produtosServices = new Mock<IProdutosServices>();
 
-            _relatoriosServices = new RelatoriosServices(_repositoryRelatorios.Object, _lancamentosServices.Object);
+            _relatoriosServices = new RelatoriosServices(_repositoryRelatorios.Object, _lancamentosServices.Object, _produtosServices.Object);
         }
 
         [TearDown]
@@ -49,6 +52,8 @@ namespace Testes.Services
             Assert.That(result, Is.Not.Null);
             Assert.That(result.Count(),Is.EqualTo(2));
         }
+
+        //começar testes
 
     }
 }
