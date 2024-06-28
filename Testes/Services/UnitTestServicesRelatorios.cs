@@ -47,13 +47,11 @@ namespace Testes.Services
             _repositoryRelatorios!.Setup(r => r.GetRelatoriosInitDataToEndDataAsync(It.IsAny<Expression<Func<Relatorio, bool>>>()))
             .ReturnsAsync((Expression<Func<Relatorio, bool>> predicate) => expectedRelatorios.AsQueryable().Where(predicate).ToList());
 
-            // Act
             var result = await _relatoriosServices!.BuscarTodosInitDataToEndDataAsync(dataInicial, dataFinal);
             Assert.That(result, Is.Not.Null);
             Assert.That(result.Count(),Is.EqualTo(2));
         }
 
-        //começar testes
 
     }
 }

@@ -1,0 +1,49 @@
+version: "3"
+
+vars:
+  GREETING: ""
+
+tasks:
+  t1_run_backend:
+    cmds:
+      - "cd EstocariaNet/ && dotnet restore && docker compose up -d && dotnet run"
+    silent: true
+
+  t2_run_frontend:
+    cmds:
+      - "cd estocaria_react/ && npm i && npm run dev"
+    silent: true
+
+  t3_derrubar_containers:
+    cmds:
+      - "cd EstocariaNet/ && docker compose down"
+    silent: true
+
+  t4_stop_containers:
+    cmds:
+      - "docker stop $(docker ps -a -q)"
+    silent: true
+
+  t5_remover_containers:
+    cmds:
+      - "docker rm $(docker ps -a -q)"
+    silent: true
+
+  t6_remover_images:
+    cmds:
+      - "docker rmi $(docker images -q)"
+    silent: true
+
+  t7_parar_apps:
+    cmds:
+      - npm install -g kill-port
+      - npx kill-port 3003
+      - npx kill-port 3000
+      - npx kill-port 8081
+
+  t8_limpar:
+    cmds:
+      - mkdir -p tmpdir/
+      - defer: rm -rf tmpdir/
+      - echo 'Do work on tmpdir/'
+

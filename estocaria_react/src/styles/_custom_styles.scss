@@ -1,0 +1,42 @@
+.btn-primary {
+    background-color: #878761;
+    border: none;
+
+}
+
+.btn-primary:hover {
+    background-color: #535343;
+}
+
+.btn-secondary {
+    background-color: #0c2c5a;
+    border: none;
+
+}
+
+.btn-secondary:hover {
+    background-color: #0a1d38;
+}
+
+// Sobrescrevendo estilos de backgrounds
+.bg-primary {
+    background-color: #878761;
+
+}
+
+.bg-secondary {
+    background-color: #0a1d38;
+
+}
+
+
+
+
+
+// .btn-primary:active {
+//     background-color: #878761;
+// }
+
+// .btn-secondary:active {
+//     background-color: #0a1d38;
+// }
