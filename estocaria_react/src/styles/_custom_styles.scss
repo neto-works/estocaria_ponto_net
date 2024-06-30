@@ -1,42 +1,53 @@
 .btn-primary {
-    background-color: #878761;
-    border: none;
-
+    background-color: #878761 !important;
+    padding: 3px 20px;
+    border-radius: 20px;
+    border-style: none;
+    text-shadow: -1px -1px 1px rgba(255, 255, 255, .1), 1px 1px 1px rgba(0, 0, 0, .5);
+    color: #072f68;
 }
 
 .btn-primary:hover {
-    background-color: #535343;
+    background-color: #535343 !important;
 }
 
 .btn-secondary {
-    background-color: #0c2c5a;
-    border: none;
-
+    background-color: #072f68 !important;
+    padding: 3px 20px;
+    border-radius: 20px;
+    border-style: none;
+    text-shadow: -1px -1px 1px rgba(255, 255, 255, .1), 1px 1px 1px rgba(0, 0, 0, .5);
+    color: --bs-white;
 }
 
 .btn-secondary:hover {
-    background-color: #0a1d38;
+    background-color: #0a1d38 !important;
 }
 
-// Sobrescrevendo estilos de backgrounds
 .bg-primary {
-    background-color: #878761;
-
+    background-color: #0a1d38 !important;
+    color: #FFF !important;
 }
 
-.bg-secondary {
-    background-color: #0a1d38;
-
+.bg-padrao {
+    background-color: #878961 !important;
+    color: #FFF !important;
 }
 
+.bg-terciary {
+    background-color: #a2a2a2 !important;
+}
 
+.bg-white {
+    background-color: #FFF !important;
+    color: #000 !important;
+}
 
-
-
-// .btn-primary:active {
-//     background-color: #878761;
-// }
-
-// .btn-secondary:active {
-//     background-color: #0a1d38;
-// }
+.round-side{
+    -webkit-border-top-right-radius: 90px;
+    -webkit-border-bottom-right-radius: 90px;
+    -moz-border-radius-topright: 90px;
+    -moz-border-radius-bottomright: 90px;
+    border-top-right-radius: 90px;
+    border-bottom-right-radius: 90px;
+}
