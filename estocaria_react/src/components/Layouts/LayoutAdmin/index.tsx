@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import Styles from "./layoutadnin.module.css";
+import Styles from "./adminlayer.module.css";
 
 interface LayoutAdminProps {
     children: Array<React.ReactNode>;
@@ -16,7 +16,6 @@ const LayoutAdmin: React.FC<LayoutAdminProps> = ({ children }): ReactNode => {
             </div>
 
             <div className="row m-0 p-0 h-50">
-                <div className="col-md-4 col-lg-1 p-0 d-flex flex-row-reverse">{sidebarChildren}</div>
                 <div className="col-md-6 col-lg-11">{footerChildren}</div>
             </div>
 

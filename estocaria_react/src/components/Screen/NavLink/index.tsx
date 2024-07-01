@@ -7,8 +7,8 @@ interface INavLinkProps {
 
 const NavLink: React.FC<INavLinkProps> = ({ children }) => {
     return (
-        <div className={`${Styles.bodyContainer}`}>
-            <ul className={`${Styles.ul}`}>{children.map((childElement, index) => (<li className={`${Styles.li}`} key={index}>{childElement}</li>))}</ul>
+        <div className={`${Styles.bodyContainer} `}>
+            <ul className={`${Styles.ul}`}>{children.map((childElement, index) => (<li className={`${Styles.li}` } key={index}>{childElement}</li>))}</ul>
         </div>
     )
 }

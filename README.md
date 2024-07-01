@@ -201,9 +201,10 @@ Solução + P.EstocariaNet.
 estocaria_react.
               ├── public
               ├── src.
-              ├         └──────────  afazer
-              ├         └──────────  afazer /  allDTO.cs
-              ├         └──────────  afazer / allRepository,cs
+              ├         └──────────  app -- all pages
+              ├         └──────────  components /  all components.tsx
+              ├         └──────────  contexts / all contexts.tsx
+              ├         └──────────  styles / all styles in bootstrap template
               └── pckage.json
 ```
 

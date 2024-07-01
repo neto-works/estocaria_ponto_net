@@ -1,0 +1,54 @@
+#draggable {
+	 background: var(--dynamic-color);
+	 display: flex;
+	 flex-direction: column;
+	 align-items: center;
+	 justify-content: center;
+	 position: relative;
+	 right: 0;
+	 top: 0;
+	 width: 80px;
+	 height: 500px;
+	 border-radius: 80px;
+	 z-index: 9999999;
+}
+ #draggable #mydraggable {
+	 cursor: move;
+	 touch-action: none;
+	 user-select: none;
+}
+ #draggable #mydraggable:hover {
+	 cursor: grab;
+}
+ #draggable #mydraggable:active {
+	 cursor: grabbing;
+	/* box-shadow: 0px 30px 100px -15px red;
+	 */
+}
+ #draggable > ul {
+	 height: 100%;
+}
+ #draggable > ul a {
+	 border-radius: 40px;
+	 color: var(--dynamic-text-color);
+	 opacity: 0.6;
+}
+ #draggable > ul a:hover, #draggable > ul a:active, #draggable > ul a.active {
+	 background-color: var(--dynamic-text-color);
+	 color: var(--bs-white);
+	 opacity: 1;
+}
+ #draggable > ul a::after {
+	 display: none;
+}
+ #draggable > ul .dropdown-menu {
+	 transform: translate(40px, 0px) !important;
+}
+.no-select {
+    user-select: none;
+}
+.wh20{
+	width: 40px;
+	height: 40px;
+	font-size: 22px;
+}

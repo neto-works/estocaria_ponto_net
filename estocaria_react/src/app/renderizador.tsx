@@ -1,6 +1,7 @@
 "use client";
 import { LayoutAdmin, LayoutBase } from "@/components/Layouts";
 import { Footer, SideBar, SideBarRight } from "@/components/Screen";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ReactNode } from "react";
 
@@ -15,7 +16,10 @@ const Renderizador: React.FC<IRenderizador> = ({ children }) => {
                 <LayoutAdmin>
                     {children}
                     <SideBar />
-                    <Footer />
+                    <Footer tituloPrimary="Parcerias" tituloSecondary="Contatos" tituloTertiary="Outros">
+                        <Link className="link" href="">alguma coisa</Link>
+                        <Link className="link" href="">alguma coisa</Link>
+                    </Footer>
                 </LayoutAdmin>
             );
         } else {
@@ -23,7 +27,10 @@ const Renderizador: React.FC<IRenderizador> = ({ children }) => {
                 <LayoutBase>
                     {children}
                     <SideBarRight />
-                    <Footer />
+                    <Footer tituloPrimary="Parcerias" tituloSecondary="Contatos" tituloTertiary="Outros">
+                        <Link className="link" href="">alguma coisa</Link>
+                        <Link className="link" href="">alguma coisa</Link>
+                    </Footer>
                 </LayoutBase>
             );
         }
