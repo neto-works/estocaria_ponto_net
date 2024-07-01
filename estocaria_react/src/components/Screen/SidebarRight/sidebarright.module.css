@@ -1,0 +1,8 @@
+.verticalText {
+    padding: 30px 0px;
+    writing-mode: vertical-rl;
+    white-space: nowrap;
+    text-orientation: upright;
+    font-size: 1.1em;
+    text-shadow: 1px 1px 0 #000,2px 2px 0 #000,3px 3px 0 #000;
+}

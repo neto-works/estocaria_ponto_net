@@ -26,10 +26,8 @@
 *.su
 *.idb
 *.pdb
-*.mod*
 *.cmd
-.tmp_versions/
-modules.order
+.tmp_versions/ 
 Module.symvers
 Mkfile.old
 dkms.conf
@@ -54,7 +52,7 @@ bld/
 # MSTest test Results
 [Tt]est[Rr]esult*/
 [Bb]uild[Ll]og.*
-
+.vscode
 # NUNIT
 *.VisualState.xml
 TestResult.xml
@@ -93,7 +91,7 @@ artifacts/
 *.pidb
 *.svclog
 *.scc
-.next
+.next/
 
 # Chutzpah Test files
 _Chutzpah*

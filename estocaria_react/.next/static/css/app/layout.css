@@ -2150,6 +2150,49 @@ url(/_next/static/media/bootstrap-icons.70a9dee9.woff) format("woff");
 .bi-suitcase2::before { content: "\f902"; }
 .bi-vignette::before { content: "\f903"; }
 
+/*!***********************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[7].use[3]!./src/components/Layouts/LayoutBase/layout.module.css ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************************************/
+.layout_layotBase___l3Mg {
+    display: grid;
+    grid-template-columns: 3fr 55px;
+    grid-template-rows: 80% 20%;
+    grid-template-areas: "content aside"
+        "footer  aside";
+}
+
+.layout_main__91n9P {
+    min-height: 100%;
+    grid-area: content;
+}
+
+.layout_aside__fbLc_ {
+    min-height: 100%;
+    grid-area: aside;
+}
+
+.layout_footer__6Pcz4 {
+    min-height: 100%;
+    grid-area: footer;
+}
+/*!********************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[7].use[3]!./src/components/Screen/NavLink/navlink.module.css ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************************/
+.navlink_bodyContainer__DeQTK {
+    width: 600px;
+    height: 50px;
+    display: flex;
+    background-color: #d7d7d7;
+    border-radius: 30px;
+}
+.navlink_ul___46_q {
+    list-style-type: none;
+    display: inherit;
+}
+.navlink_li__b3x34 {
+    list-style: none;
+    padding: 10px;
+}
 /*!******************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[7].use[3]!./src/components/Screen/SidebarRight/sidebarright.module.css ***!
   \******************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -2174,6 +2217,10 @@ body {
   box-sizing: border-box;
   background-color: white;
   color: white;
+}
+
+a {
+  text-decoration: none;
 }
 
 :root,

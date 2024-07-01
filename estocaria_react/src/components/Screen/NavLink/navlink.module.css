@@ -1,0 +1,15 @@
+.bodyContainer {
+    width: 600px;
+    height: 50px;
+    display: flex;
+    background-color: #d7d7d7;
+    border-radius: 30px;
+}
+.ul {
+    list-style-type: none;
+    display: inherit;
+}
+.li {
+    list-style: none;
+    padding: 10px;
+}

@@ -1,0 +1,22 @@
+.layotBase {
+    display: grid;
+    grid-template-columns: 3fr 55px;
+    grid-template-rows: 80% 20%;
+    grid-template-areas: "content aside"
+        "footer  aside";
+}
+
+.main {
+    min-height: 100%;
+    grid-area: content;
+}
+
+.aside {
+    min-height: 100%;
+    grid-area: aside;
+}
+
+.footer {
+    min-height: 100%;
+    grid-area: footer;
+}
